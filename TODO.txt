@@ -18,4 +18,9 @@ Set Up Environment
 
   * npm init -y
   * Add requires dependencies
-  * 
+    -> nyv
+    -> mocha
+    -> eslint
+    -> supertest
+    -> growl
+    -> terminal-notifier
