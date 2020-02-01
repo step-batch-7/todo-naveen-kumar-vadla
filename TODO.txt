@@ -1,0 +1,21 @@
+Set Up Environment
+  * create folders and files
+    -> lib/
+      -> mimeTypes.js
+    -> public/
+      -> css/
+      -> js/
+      -> images/
+      -> index.html
+    -> templates/
+    -> test/
+      -> testHandlers.js
+    -> app.js
+    -> server.js
+    -> handlers.js
+    -> .eslintrc.json
+    -> .gitignore 
+
+  * npm init -y
+  * Add requires dependencies
+  * 
