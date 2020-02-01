@@ -9,7 +9,7 @@ Set Up Environment
       -> index.html
     -> templates/
     -> test/
-      -> testHandlers.js
+      -> handlersTest.js
     -> app.js
     -> server.js
     -> handlers.js
