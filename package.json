@@ -1,0 +1,34 @@
+{
+  "name": "todo-naveen-kumar-vadla",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/step-batch-7/todo-naveen-kumar-vadla.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/step-batch-7/todo-naveen-kumar-vadla/issues"
+  },
+  "homepage": "https://github.com/step-batch-7/todo-naveen-kumar-vadla#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "growl": "^1.10.5",
+    "mocha": "^7.0.1",
+    "nyc": "^15.0.0",
+    "supertest": "^4.0.2",
+    "terminal-notifier": "^0.1.2"
+  },
+  "dependencies": {}
+}
