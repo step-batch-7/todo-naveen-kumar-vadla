@@ -1,27 +1,29 @@
 Set Up Environment
   * create folders and files
-    -> lib/
-      -> mimeTypes.js
-    -> public/
-      -> css/
-      -> js/
-      -> images/
-      -> index.html
-    -> templates/
-    -> test/
-      -> handlersTest.js
-    -> app.js
-    -> server.js
-    -> handlers.js
-    -> .eslintrc.json
-    -> .gitignore 
+  --DONE-- -> lib/
+  --DONE-- | -> mimeTypes.js
+  --DONE-- -> public/
+  --DONE-- | -> css/
+  --DONE-- | -> js/
+  --DONE-- | -> images/
+  --DONE-- | -> index.html
+  --DONE-- -> templates/
+  --DONE-- -> test/
+  --DONE-- | -> handlersTest.js
+  --DONE-- -> app.js
+  --DONE-- -> server.js
+  --DONE-- -> handlers.js
+  --DONE-- -> .eslintrc.json
+  --DONE-- -> .gitignore 
 
   * npm init -y
+  --DONE-- -> package.json
+  --DONE-- -> package-lock.json
+
   * Add requires dependencies
-    -> nyc
-    -> mocha
-    -> eslint
-    -> supertest
-    -> growl
-    -> terminal-notifier
-    
+  --DONE-- -> nyc
+  --DONE-- -> mocha
+  --DONE-- -> eslint
+  --DONE-- -> supertest
+  --DONE-- -> growl
+  --DONE-- -> terminal-notifier
