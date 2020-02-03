@@ -107,7 +107,7 @@ body {
   outline: none;
 }
 
-#addTaskBar {
+.addTaskBar {
   display: flex;
   justify-content: center;
 }
