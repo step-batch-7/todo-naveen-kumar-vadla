@@ -1,7 +1,7 @@
 'use strict';
 
 const { Server } = require('http');
-const app = require('./handlers');
+const app = require('./lib/handlers');
 
 const defaultPort = 7000;
 
