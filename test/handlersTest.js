@@ -5,6 +5,40 @@ let app = require('../lib/handlers');
 app = app.handleRequests.bind(app);
 
 describe('GET', () => {
+  describe('Home Page', () => {
+    it('should get the path / or index.html', done => {
+      request(app)
+        .get('/')
+        .set('Accept', '*/*')
+        .expect(200)
+        .expect('Content-Type', 'text/html')
+        .expect('Content-Length', '480', done);
+    });
+    it('should get the path /css/homePage.css', done => {
+      request(app)
+        .get('/css/homePage.css')
+        .set('Accept', '*/*')
+        .expect(200)
+        .expect('Content-Type', 'text/css')
+        .expect('Content-Length', '710', done);
+    });
+    it('should get the path /js/homePage.js', done => {
+      request(app)
+        .get('/js/homePage.js')
+        .set('Accept', '*/*')
+        .expect(200)
+        .expect('Content-Type', 'application/javascript')
+        .expect('Content-Length', '1195', done);
+    });
+    it('should get the path /images/create.svg', done => {
+      request(app)
+        .get('/images/create.svg')
+        .set('Accept', '*/*')
+        .expect(200)
+        .expect('Content-Type', 'image/svg+xml', done);
+    });
+  });
+
   describe('FILE NOT FOUND', () => {
     it('Should give file not found if file not exist', done => {
       request(app)
