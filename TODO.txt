@@ -1,4 +1,37 @@
-Set Up Environment
+Features :
+  1. Create one or more to-do list with a title
+  2. View all the to-do lists
+  3. Add an item to a to-do list
+  4. Delete an item from to-do list
+  5. Mark an item as done and undone
+  6. Delete a todo list
+
+Data Structure :  
+  * todo lists --> Array of list Objects 
+      [{list1}, {list2}...]
+
+  * lists --> Object contains title and listOfTasks
+      { title: '<title>' tasks: [{task1}, {task1}, {task1}]}
+
+  * tasks --> Array of task Objects and
+      [{task1}, {task1}, {task1}]
+
+  * task1,task2... --> Objects contains task and isDone
+      { task:'<task>', isDone:'true/false'}
+  
+  ex: 
+  [
+    {
+      title:'Improve english grammar '
+      tasks: [ 
+        { task : 'reading english novel', isDone: 'false'},
+        { task : 'watching english tv shows', isDone: 'true'},
+        { task : 'speaking in english everyTime',isDone: 'false'},
+      ]
+    }
+  ]
+
+Set Up Environment :
   * create folders and files
   --DONE-- -> lib/
   --DONE-- | -> mimeTypes.js
@@ -28,37 +61,16 @@ Set Up Environment
   --DONE-- -> growl
   --DONE-- -> terminal-notifier
 
-
-Features :
-  1. Create one or more to-do list with a title
-  2. View all the to-do lists
-  3. Add an item to a to-do list
-  4. Delete an item from to-do list
-  5. Mark an item as done and undone
-  6. Delete a todo list
-
-Data Structure :  
-  * todo lists --> Array of list Objects 
-      [{list1}, {list2}...]
-
-  * lists --> Object contains title and listOfTasks
-      { title: '<title>' tasks: [{task1}, {task1}, {task1}]}
-
-  * tasks --> Array of task Objects and
-      [{task1}, {task1}, {task1}]
-
-  * task1,task2... --> Objects contains task and isDone
-      { task:'<task>', isDone:'true/false'}
+Tasks :
+  * Add default handlers for 
+  --DONE-- -> method not allowed
+  --DONE-- -> file not found
+  --DONE-- -> serveStatic file
   
-  ex: 
-  [
-    {
-      title:'Improve english grammar '
-      tasks: [ 
-        { task : 'reading english novel for ' isDone: 'false'},
-        { task : 'watching english show' isDone: 'true'},
-        { task : 'speaking in english everyTime' isDone: 'false'},
-      ]
-    }
-  ]
+  * Add tests for default handlers
+    -> method not allowed
+    -> file not found
+    -> serveStatic file
 
+--DONE--  * move handlers.js and app.js to lib
+--DONE--  * Create a homePage with title todo and an input field to enter todoList name and create button
