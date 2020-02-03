@@ -68,9 +68,11 @@ Tasks :
   --DONE-- -> serveStatic file
   
   * Add tests for default handlers
-    -> method not allowed
-    -> file not found
-    -> serveStatic file
+  --DONE-- -> method not allowed
+  --DONE-- -> file not found
+  --DONE-- -> serveStatic file
 
 --DONE--  * move handlers.js and app.js to lib
 --DONE--  * Create a homePage with title todo and an input field to enter todoList name and create button
+
+--DONE--  * Add tests for homePage
