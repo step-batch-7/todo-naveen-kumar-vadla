@@ -34,7 +34,7 @@ const setupTodoAdder = () => {
   const taskAdder = getTaskAdderBox();
   const form = document.createElement('form');
   form.id = 'addTaskBar';
-  form.setAttribute('action', 'createTodo');
+  form.setAttribute('action', 'createList');
   form.setAttribute('method', 'POST');
   form.appendChild(getTitleBox());
   form.appendChild(getCreateButton());
