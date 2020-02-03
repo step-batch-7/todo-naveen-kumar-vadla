@@ -34,7 +34,7 @@ body {
   font-weight: 500;
 }
 
-#addTaskBar {
+#addTitleBar {
   display: flex;
   justify-content: center;
   margin: 5% 0% 0% 0%;
@@ -57,12 +57,57 @@ body {
   outline: none;
 }
 
-.createImage {
+.svg {
   height: 15px;
 }
 
-#todoLists {
+#todo-lists {
   overflow: auto;
   margin: 1% 1% 1% 1%;
-  height: 570px;
+  height: 500px;
+}
+
+
+.list {
+  display: flex;
+  flex-flow: column wrap;
+  border-radius: 10px;
+  padding: 0.5%;
+  margin: 0.5%;
+  border: 1px solid black;
+}
+
+.list-title {
+  margin: 0%;
+  font-weight: 500;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  margin: 1%;
+}
+
+
+.addTask {
+  width: 25%;
+  padding-left: 10px;
+}
+
+.addTask,
+.addButton {
+  border-radius: 3px;
+  background-color: whitesmoke;
+  border: 1px solid rgb(154, 154, 154);
+}
+
+.addButton:focus,
+.addTask:focus {
+  outline: none;
+}
+
+#addTaskBar {
+  display: flex;
+  justify-content: center;
 }
