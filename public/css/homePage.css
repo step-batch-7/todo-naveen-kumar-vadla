@@ -18,14 +18,30 @@ body {
   border-radius: 10px;
 }
 
+#task-adder {
+  border: 1px dotted black;
+  padding: 2%;
+  border-radius: 10px;
+  width: 25%;
+  margin: 0 auto;
+  margin-top: 1%;
+  
+}
+
+.task-adder-header {
+  margin: 0px;
+  text-align: center;
+  font-weight: 500;
+}
+
 #addTaskBar {
   display: flex;
   justify-content: center;
-  margin: 1% 0% 0% 0%;
+  margin: 5% 0% 0% 0%;
 }
 
 #title {
-  width: 500px;
+  width: 70%;
   padding-left: 10px;
 }
 
@@ -42,12 +58,11 @@ body {
 }
 
 .createImage {
-  padding: 1% ;
-  height: 20px;
+  height: 15px;
 }
 
 #todoLists {
   overflow: auto;
-  margin: 1% 1% 0% 1%;
-  height: 580px;
+  margin: 1% 1% 1% 1%;
+  height: 570px;
 }

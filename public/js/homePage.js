@@ -2,6 +2,14 @@
 
 const getTaskAdderBox = () => document.querySelector('#task-adder');
 
+const addHeader = function() {
+  const taskAdder = getTaskAdderBox();
+  const header = document.createElement('h3');
+  header.textContent = 'Create A New Todo List';
+  header.classList.add('task-adder-header');
+  taskAdder.appendChild(header);
+};
+
 const getTitleBox = ( ) => {
   const titleBox = document.createElement('input');
   titleBox.setAttribute('type', 'text');
@@ -34,6 +42,7 @@ const setupTodoAdder = () => {
 };
 
 const main = () => {
+  addHeader();
   setupTodoAdder();
 };
 
