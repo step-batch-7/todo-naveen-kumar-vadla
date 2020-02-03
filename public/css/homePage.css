@@ -1,8 +1,5 @@
 body {
   background: linear-gradient( to right, whitesmoke, gray );
-  background-size: cover;
-  width: 100%;
-  height: 100%;
 }
 
 .main-heading {
@@ -12,13 +9,13 @@ body {
 
 .listsContainer {
   height: 650px;
-  overflow: scroll;
 }
 
 .main-heading,
 .listsContainer {
   margin: 2% 5% 1% 5%;
   border: 1px solid black;
+  border-radius: 10px;
 }
 
 #addTaskBar {
@@ -27,25 +24,30 @@ body {
   margin: 1% 0% 0% 0%;
 }
 
-#taskName {
-  height: 30px;
+#title {
   width: 500px;
   padding-left: 10px;
 }
 
-#addButton {
-  padding: 0%;
-  margin: 0% 0% 0% 0.1%;
-}
-
-#taskName,
-#addButton {
-  background-color: whitesmoke;
+#title,
+#create {
   border-radius: 3px;
+  background-color: whitesmoke;
   border: 1px solid rgb(154, 154, 154);
 }
 
-#addButton:focus,
-#taskName:focus {
+#create:focus,
+#title:focus {
   outline: none;
+}
+
+.createImage {
+  padding: 1% ;
+  height: 20px;
+}
+
+#todoLists {
+  overflow: auto;
+  margin: 1% 1% 0% 1%;
+  height: 580px;
 }
