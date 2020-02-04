@@ -13,43 +13,6 @@ const sendXHR = (method, url, message, callback) => {
   xhr.send(message);
 };
 
-const createImage = (src, cssClass, eventListener) => {
-  const img = document.createElement('img');
-  img.setAttribute('src', src);
-  img.classList.add(cssClass);
-  img.addEventListener('click', eventListener);
-  return img;
-};
-
-const createImageButton = (name, eventListener) => {
-  const button = document.createElement('button');
-  const image = createImage(`images/${name}.svg`, 'svg');
-  button.classList.add(`${name}Button`);
-  button.addEventListener('click', eventListener);
-  button.appendChild(image);
-  return button;
-};
-
-const getTaskAdderBox = () => document.querySelector('#task-adder');
-
-const addHeader = () => {
-  const taskAdder = getTaskAdderBox();
-  const header = document.createElement('h3');
-  header.textContent = 'Create A New Todo List';
-  header.classList.add('task-adder-header');
-  taskAdder.appendChild(header);
-};
-
-const getTitleBox = () => {
-  const titleBox = document.createElement('input');
-  titleBox.setAttribute('type', 'text');
-  titleBox.setAttribute('name', 'title');
-  titleBox.setAttribute('id', 'title');
-  titleBox.setAttribute('required', 'true');
-  titleBox.setAttribute('placeholder', 'Enter your title here');
-  return titleBox;
-};
-
 const createList = () => {
   const createButton = document.querySelector('.createButton');
   const inputBox = createButton.previousElementSibling;
@@ -65,55 +28,33 @@ const deleteList = event => {
 
 const addTask = () => {};
 
-const setupTodoAdder = () => {
-  const taskAdder = getTaskAdderBox();
-  const div = document.createElement('div');
-  const createButton = createImageButton('create', createList);
-  div.id = 'addTitleBar';
-  div.setAttribute('action', 'createList');
-  div.setAttribute('method', 'POST');
-  div.appendChild(getTitleBox());
-  div.appendChild(createButton);
-  taskAdder.appendChild(div);
-};
-
-const createListHeader = title => {
-  const listHeader = document.createElement('div');
-  const listTitle = document.createElement('h3');
-  const removeImage = createImage('images/delete.svg', 'svg', deleteList);
-  listTitle.classList.add('list-title');
-  listTitle.textContent = title;
-  listHeader.classList.add('list-header');
-  removeImage.classList.add('removeButton');
-  listHeader.appendChild(listTitle);
-  listHeader.appendChild(removeImage);
-  return listHeader;
-};
-
-const createTaskBox = () => {
-  const textBox = document.createElement('input');
-  textBox.setAttribute('type', 'text');
-  textBox.setAttribute('name', 'task');
-  textBox.setAttribute('required', 'true');
-  textBox.setAttribute('placeholder', 'Add your task here');
-  textBox.classList.add('addTask');
-  return textBox;
-};
-
 const createTasksAdder = () => {
-  const taskAdder = document.createElement('div');
-  const addButton = createImageButton('add', addTask);
-  taskAdder.classList.add('addTaskBar');
-  taskAdder.appendChild(createTaskBox());
-  taskAdder.appendChild(addButton);
+  const taskAdder = `<div class="addTaskBar">
+    <input type="text" name="task"  
+    placeholder="Add your task here" class="addTask">
+    <button class="addButton" onclick="addTask()">
+      <img src="images/add.svg" class="svg">
+    </button>
+  </div>`;
   return taskAdder;
 };
 
+const createTasksContainer = tasks => '';
+
 const createTasks = tasks => {
-  const tasksContainer = document.createElement('div');
-  tasksContainer.classList.add('list-items');
-  tasksContainer.appendChild(createTasksAdder());
+  const tasksContainer = `<div class="list-items">
+    ${createTasksAdder()}
+    ${createTasksContainer(tasks)}
+  </div>`;
   return tasksContainer;
+};
+
+const createListHeader = title => {
+  const listHeader = `<div class="list-header">
+    <h3 class="list-title">${title}</h3>
+    <img src="images/delete.svg" class="svg removeButton" onclick="deleteList(event)">
+  </div>`;
+  return listHeader;
 };
 
 const createTodoList = list => {
@@ -122,8 +63,7 @@ const createTodoList = list => {
   const tasks = createTasks(list.tasks);
   listContainer.id = list.id;
   listContainer.classList.add('list');
-  listContainer.appendChild(header);
-  listContainer.appendChild(tasks);
+  listContainer.innerHTML = header + tasks;
   return listContainer;
 };
 
@@ -132,15 +72,9 @@ const generateTasks = text => {
   const todoListsJSON = JSON.parse(text);
   const todoLists = todoListsJSON.map(createTodoList);
   todoListContainer.innerHTML = '';
-  todoLists.forEach(task => todoListContainer.appendChild(task));
+  todoLists.forEach(todo => todoListContainer.appendChild(todo));
 };
 
 const loadTasks = () => sendXHR('GET', '/tasks', '', generateTasks);
 
-const main = () => {
-  addHeader();
-  setupTodoAdder();
-  loadTasks();
-};
-
-window.onload = main;
+window.onload = loadTasks;
