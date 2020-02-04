@@ -11,24 +11,21 @@ describe('GET', () => {
         .get('/')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'text/html')
-        .expect('Content-Length', '481', done);
+        .expect('Content-Type', 'text/html', done);
     });
     it('should get the path /css/homePage.css', done => {
       request(app)
         .get('/css/homePage.css')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'text/css')
-        .expect('Content-Length', '1456', done);
+        .expect('Content-Type', 'text/css', done);
     });
     it('should get the path /js/homePage.js', done => {
       request(app)
         .get('/js/homePage.js')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'application/javascript')
-        .expect('Content-Length', '4532', done);
+        .expect('Content-Type', 'application/javascript', done);
     });
     it('should get the path /images/create.svg', done => {
       request(app)
