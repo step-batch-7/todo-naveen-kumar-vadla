@@ -50,8 +50,7 @@
 #title:focus,
 .createButton:focus,
 .addButton:focus,
-.addTask:focus,
-.removeButton:focus {
+.addTask:focus {
   outline: none;
 }
 

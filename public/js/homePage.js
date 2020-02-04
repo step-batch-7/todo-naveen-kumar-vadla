@@ -33,13 +33,12 @@ const createImage = (src, cssClass, eventListener) => {
   return img;
 };
 
-const createImgButton = (name, eventListener) => {
+const createImageButton = (name, eventListener) => {
   const button = document.createElement('button');
-  const btnClass = `${name}Button`;
-  const imgSrc = `images/${name}.svg`;
-  const addImage = createImage(imgSrc, 'svg', eventListener);
-  button.classList.add(btnClass);
-  button.appendChild(addImage);
+  const image = createImage(`images/${name}.svg`, 'svg');
+  button.classList.add(`${name}Button`);
+  button.addEventListener('click', eventListener);
+  button.appendChild(image);
   return button;
 };
 
@@ -63,16 +62,11 @@ const getTitleBox = () => {
   return titleBox;
 };
 
-const setupTodoAdder = () => {
-  const taskAdder = getTaskAdderBox();
-  const form = document.createElement('form');
-  const createButton = createImgButton('create', () => {});
-  form.id = 'addTitleBar';
-  form.setAttribute('action', 'createList');
-  form.setAttribute('method', 'POST');
-  form.appendChild(getTitleBox());
-  form.appendChild(createButton);
-  taskAdder.appendChild(form);
+const createList = () => {
+  const createButton = document.querySelector('.createButton');
+  const inputBox = createButton.previousElementSibling;
+  postHttpMsg('/createList', generateTasks, `title=${inputBox.value}`);
+  inputBox.value = '';
 };
 
 const deleteList = event => {
@@ -82,6 +76,18 @@ const deleteList = event => {
 };
 
 const addTask = () => {};
+
+const setupTodoAdder = () => {
+  const taskAdder = getTaskAdderBox();
+  const div = document.createElement('div');
+  const createButton = createImageButton('create', createList);
+  div.id = 'addTitleBar';
+  div.setAttribute('action', 'createList');
+  div.setAttribute('method', 'POST');
+  div.appendChild(getTitleBox());
+  div.appendChild(createButton);
+  taskAdder.appendChild(div);
+};
 
 const createListHeader = title => {
   const listHeader = document.createElement('div');
@@ -108,7 +114,7 @@ const createTaskBox = () => {
 
 const createTasksAdder = () => {
   const taskAdder = document.createElement('div');
-  const addButton = createImgButton('add', addTask);
+  const addButton = createImageButton('add', addTask);
   taskAdder.classList.add('addTaskBar');
   taskAdder.appendChild(createTaskBox());
   taskAdder.appendChild(addButton);
