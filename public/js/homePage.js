@@ -27,30 +27,31 @@ const deleteList = event => {
 };
 
 const addTask = () => {};
+const removeTask = () => {};
 
 const createTasksAdder = () => {
   const taskAdder = `<div class="addTaskBar">
     <input type="text" name="task"  
     placeholder="Add your task here" class="addTask">
-    <button class="addButton" onclick="addTask()">
+    <button class="addButton" onclick="addTask(event)">
       <img src="images/add.svg" class="svg">
     </button>
   </div>`;
   return taskAdder;
 };
 
-const generateSubtasks = (subTasksHtml, subTask) => {
-  const subTaskElements = `<div id="${subTask.id}" class="task-item">
+const generateSubtasks = (allTasksHtml, subTask) => {
+  const taskHtml = `<div id="${subTask.id}" class="task-item">
     <p><input type="checkbox"> ${subTask.task}</p>
     <img src="images/remove.svg" class="svg removeImage" onclick="removeTask()">
     </div>`;
-  return subTasksHtml + subTaskElements;
+  return allTasksHtml + taskHtml;
 };
 
-const createTasks = tasks => {
+const createTasks = list => {
   const tasksContainer = `<div class="list-items">
     ${createTasksAdder()}
-    <div class="subtasks">${tasks.reduce(generateSubtasks, '')}</div>
+    <div class="subtasks">${list.tasks.reduce(generateSubtasks, '')}</div>
   </div>`;
   return tasksContainer;
 };
@@ -67,7 +68,7 @@ const createListHeader = title => {
 const createTodoList = list => {
   const listContainer = document.createElement('div');
   const header = createListHeader(list.title);
-  const tasks = createTasks(list.tasks);
+  const tasks = createTasks(list);
   listContainer.id = list.id;
   listContainer.classList.add('list');
   listContainer.innerHTML = header + tasks;
