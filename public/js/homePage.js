@@ -40,6 +40,7 @@ const getTitleBox = () => {
   titleBox.setAttribute('type', 'text');
   titleBox.setAttribute('name', 'title');
   titleBox.setAttribute('id', 'title');
+  titleBox.setAttribute('required', 'true');
   titleBox.setAttribute('placeholder', 'Enter your title here');
   return titleBox;
 };
@@ -47,11 +48,8 @@ const getTitleBox = () => {
 const getCreateButton = () => {
   const createButton = document.createElement('button');
   createButton.setAttribute('id', 'createButton');
-  const createImage = document.createElement('img');
-  createImage.setAttribute('src', './images/create.svg');
-  createImage.setAttribute('alt', 'createButton');
-  createImage.classList.add('svg');
-  createButton.appendChild(createImage);
+  const createImg = createImage('images/create.svg', 'svg', () => {});
+  createButton.appendChild(createImg);
   return createButton;
 };
 
@@ -71,8 +69,6 @@ const deleteList = event => {
   const taskId = task.id;
   postHttpMsg('/removeList', generateTasks, `id=${taskId}`);
 };
-
-const addTask = () => {};
 
 const createImage = (src, cssClass, eventListener) => {
   const img = document.createElement('img');
@@ -96,7 +92,7 @@ const createListHeader = title => {
 
 const createAddButton = () => {
   const addButton = document.createElement('button');
-  const addImage = createImage('images/plus.svg', 'svg', addTask);
+  const addImage = createImage('images/plus.svg', 'svg', () => {});
   addButton.classList.add('addButton');
   addButton.appendChild(addImage);
   return addButton;
@@ -105,14 +101,19 @@ const createAddButton = () => {
 const createTaskBox = () => {
   const textBox = document.createElement('input');
   textBox.setAttribute('type', 'text');
-  textBox.classList.add('addTask');
+  textBox.setAttribute('name', 'task');
+  textBox.setAttribute('id', 'task');
+  textBox.setAttribute('required', 'true');
   textBox.setAttribute('placeholder', 'Add your task here');
+  textBox.classList.add('addTask');
   return textBox;
 };
 
 const createTasksAdder = () => {
   const form = document.createElement('form');
   form.classList.add('addTaskBar');
+  form.setAttribute('action', 'addTask');
+  form.setAttribute('method', 'POST');
   form.appendChild(createTaskBox());
   form.appendChild(createAddButton());
   return form;
