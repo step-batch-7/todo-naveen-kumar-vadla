@@ -33,9 +33,11 @@ const createImage = (src, cssClass, eventListener) => {
   return img;
 };
 
-const createImageButton = ( btnClass, imgSrc, imgClass, eventListener ) => {
+const createImgButton = ( name, eventListener ) => {
   const button = document.createElement('button');
-  const addImage = createImage(imgSrc, imgClass, eventListener);
+  const btnClass = `${name}Button`;
+  const imgSrc = `images/${name}.svg`;
+  const addImage = createImage(imgSrc, 'svg', eventListener);
   button.classList.add(btnClass);
   button.appendChild(addImage);
   return button;
@@ -64,7 +66,7 @@ const getTitleBox = () => {
 const setupTodoAdder = () => {
   const taskAdder = getTaskAdderBox();
   const form = document.createElement('form');
-  const createButton = createImageButton('createButton', 'images/create.svg', 'svg', () => {} );
+  const createButton = createImgButton('create', () => {} );
   form.id = 'addTitleBar';
   form.setAttribute('action', 'createList');
   form.setAttribute('method', 'POST');
@@ -105,7 +107,7 @@ const createTaskBox = () => {
 
 const createTasksAdder = () => {
   const taskAdder = document.createElement('div');
-  const addButton = createImageButton('addButton', 'images/plus.svg', 'svg', () => {} );
+  const addButton = createImgButton('add', () => {} );
   taskAdder.classList.add('addTaskBar');
   taskAdder.appendChild(createTaskBox());
   taskAdder.appendChild(addButton);

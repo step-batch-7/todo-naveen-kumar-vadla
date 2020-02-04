@@ -12,7 +12,7 @@
 }
 
 #task-adder {
-  border-bottom: 1px dotted black;
+  border-bottom: 1px solid black;
   padding: 1%;
   background-color: gray;
 }
@@ -36,7 +36,7 @@
 }
 
 #title,
-.createButton {
+.addTask {
   background-color: whitesmoke;
   border: none;
 }
@@ -56,18 +56,13 @@
   outline: none;
 }
 
-.addTask,
-.addButton {
-  background: whitesmoke;
-}
-
 .createButton,
 .addButton {
-  border-left: 1px solid #cccccc;
+  background-color: lightskyblue;
 }
 
 .svg {
-  height: 15px;
+  height: 20px;
 }
 
 .removeButton {
