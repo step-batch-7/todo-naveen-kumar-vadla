@@ -2,27 +2,15 @@
 
 const STATUS_CODES = { OK: 200 };
 
-const sendHttpGet = (url, callback) => {
+const sendXHR = (method, url, message, callback) => {
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', url);
+  xhr.open(method, url);
   xhr.onload = function() {
     if (this.status === STATUS_CODES.OK) {
       callback(this.responseText);
     }
   };
-  xhr.send();
-};
-
-const postHttpMsg = (url, callback, message) => {
-  const req = new XMLHttpRequest();
-  req.onload = function() {
-    if (this.status === STATUS_CODES.OK) {
-      callback(this.responseText);
-    }
-  };
-  req.open('POST', url);
-  req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  req.send(message);
+  xhr.send(message);
 };
 
 const createImage = (src, cssClass, eventListener) => {
@@ -65,14 +53,14 @@ const getTitleBox = () => {
 const createList = () => {
   const createButton = document.querySelector('.createButton');
   const inputBox = createButton.previousElementSibling;
-  postHttpMsg('/createList', generateTasks, `title=${inputBox.value}`);
+  sendXHR('POST', '/createList', `title=${inputBox.value}`, generateTasks);
   inputBox.value = '';
 };
 
 const deleteList = event => {
   const [, , task] = event.path;
   const taskId = task.id;
-  postHttpMsg('/removeList', generateTasks, `id=${taskId}`);
+  sendXHR('POST', '/removeList', `id=${taskId}`, generateTasks);
 };
 
 const addTask = () => {};
@@ -147,7 +135,7 @@ const generateTasks = text => {
   todoLists.forEach(task => todoListContainer.appendChild(task));
 };
 
-const loadTasks = () => sendHttpGet('/tasks', generateTasks);
+const loadTasks = () => sendXHR('GET', '/tasks', '', generateTasks);
 
 const main = () => {
   addHeader();
