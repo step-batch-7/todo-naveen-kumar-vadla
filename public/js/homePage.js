@@ -33,7 +33,7 @@ const createImage = (src, cssClass, eventListener) => {
   return img;
 };
 
-const createImgButton = ( name, eventListener ) => {
+const createImgButton = (name, eventListener) => {
   const button = document.createElement('button');
   const btnClass = `${name}Button`;
   const imgSrc = `images/${name}.svg`;
@@ -66,7 +66,7 @@ const getTitleBox = () => {
 const setupTodoAdder = () => {
   const taskAdder = getTaskAdderBox();
   const form = document.createElement('form');
-  const createButton = createImgButton('create', () => {} );
+  const createButton = createImgButton('create', () => {});
   form.id = 'addTitleBar';
   form.setAttribute('action', 'createList');
   form.setAttribute('method', 'POST');
@@ -80,6 +80,8 @@ const deleteList = event => {
   const taskId = task.id;
   postHttpMsg('/removeList', generateTasks, `id=${taskId}`);
 };
+
+const addTask = () => {};
 
 const createListHeader = title => {
   const listHeader = document.createElement('div');
@@ -98,7 +100,6 @@ const createTaskBox = () => {
   const textBox = document.createElement('input');
   textBox.setAttribute('type', 'text');
   textBox.setAttribute('name', 'task');
-  textBox.setAttribute('id', 'task');
   textBox.setAttribute('required', 'true');
   textBox.setAttribute('placeholder', 'Add your task here');
   textBox.classList.add('addTask');
@@ -107,7 +108,7 @@ const createTaskBox = () => {
 
 const createTasksAdder = () => {
   const taskAdder = document.createElement('div');
-  const addButton = createImgButton('add', () => {} );
+  const addButton = createImgButton('add', addTask);
   taskAdder.classList.add('addTaskBar');
   taskAdder.appendChild(createTaskBox());
   taskAdder.appendChild(addButton);
