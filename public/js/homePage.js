@@ -1,8 +1,33 @@
 'use strict';
 
+const STATUS_CODES = { OK: 200 };
+
+const sendHttpGet = (url, callback) => {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', url);
+  xhr.onload = function() {
+    if (this.status === STATUS_CODES.OK) {
+      callback(this.responseText);
+    }
+  };
+  xhr.send();
+};
+
+const postHttpMsg = (url, callback, message) => {
+  const req = new XMLHttpRequest();
+  req.onload = function() {
+    if (this.status === STATUS_CODES.OK) {
+      callback(this.responseText);
+    }
+  };
+  req.open('POST', url);
+  req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  req.send(message);
+};
+
 const getTaskAdderBox = () => document.querySelector('#task-adder');
 
-const addHeader = function() {
+const addHeader = () => {
   const taskAdder = getTaskAdderBox();
   const header = document.createElement('h3');
   header.textContent = 'Create A New Todo List';
@@ -10,7 +35,7 @@ const addHeader = function() {
   taskAdder.appendChild(header);
 };
 
-const getTitleBox = ( ) => {
+const getTitleBox = () => {
   const titleBox = document.createElement('input');
   titleBox.setAttribute('type', 'text');
   titleBox.setAttribute('name', 'title');
@@ -19,7 +44,7 @@ const getTitleBox = ( ) => {
   return titleBox;
 };
 
-const getCreateButton = ( ) => {
+const getCreateButton = () => {
   const createButton = document.createElement('button');
   createButton.setAttribute('id', 'createButton');
   const createImage = document.createElement('img');
@@ -41,8 +66,8 @@ const setupTodoAdder = () => {
   taskAdder.appendChild(form);
 };
 
-const deleteList = function(event) {
-  const [,, task] = event.path;
+const deleteList = event => {
+  const [, , task] = event.path;
   const taskId = task.id;
   postHttpMsg('/removeList', generateTasks, `id=${taskId}`);
 };
@@ -57,7 +82,7 @@ const createImage = (src, cssClass, eventListener) => {
   return img;
 };
 
-const createListHeader = ( title ) => {
+const createListHeader = title => {
   const listHeader = document.createElement('div');
   const listTitle = document.createElement('h3');
   const removeImage = createImage('images/delete.svg', 'svg', deleteList);
@@ -85,18 +110,22 @@ const createTaskBox = () => {
   return textBox;
 };
 
-const createTasks = ( tasks ) => {
+const createTasksAdder = () => {
   const form = document.createElement('form');
-  const tasksContainer = document.createElement('div');
-  tasksContainer.classList.add('list-items');
   form.classList.add('addTaskBar');
   form.appendChild(createTaskBox());
   form.appendChild(createAddButton());
-  tasksContainer.appendChild(form);
+  return form;
+};
+
+const createTasks = tasks => {
+  const tasksContainer = document.createElement('div');
+  tasksContainer.classList.add('list-items');
+  tasksContainer.appendChild(createTasksAdder());
   return tasksContainer;
 };
 
-const createTodoList = ( list ) => {
+const createTodoList = list => {
   const listContainer = document.createElement('div');
   const header = createListHeader(list.title);
   const tasks = createTasks(list.tasks);
@@ -107,32 +136,7 @@ const createTodoList = ( list ) => {
   return listContainer;
 };
 
-const STATUS_CODES = { OK: 200 };
-
-const sendHttpGet = ( url, callback ) => {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', url);
-  xhr.onload = function () {
-    if(this.status === STATUS_CODES.OK) {
-      callback(this.responseText);
-    }
-  };
-  xhr.send();
-};
-
-const postHttpMsg = function(url, callback, message) {
-  const req = new XMLHttpRequest();
-  req.onload = function() {
-    if(this.status === STATUS_CODES.OK) {
-      callback(this.responseText);
-    }
-  };
-  req.open('POST', url);
-  req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  req.send(message);
-};
-
-const generateTasks = function(text) {
+const generateTasks = text => {
   const todoListContainer = document.querySelector('#todo-lists');
   const todoListsJSON = JSON.parse(text);
   const todoLists = todoListsJSON.map(createTodoList);
@@ -140,9 +144,7 @@ const generateTasks = function(text) {
   todoLists.forEach(task => todoListContainer.appendChild(task));
 };
 
-const loadTasks = () => {
-  sendHttpGet('/tasks', generateTasks);
-};
+const loadTasks = () => sendHttpGet('/tasks', generateTasks);
 
 const main = () => {
   addHeader();
@@ -151,4 +153,3 @@ const main = () => {
 };
 
 window.onload = main;
-
