@@ -12,7 +12,7 @@ describe('GET', () => {
         .set('Accept', '*/*')
         .expect(200)
         .expect('Content-Type', 'text/html')
-        .expect('Content-Length', '480', done);
+        .expect('Content-Length', '481', done);
     });
     it('should get the path /css/homePage.css', done => {
       request(app)
@@ -20,7 +20,7 @@ describe('GET', () => {
         .set('Accept', '*/*')
         .expect(200)
         .expect('Content-Type', 'text/css')
-        .expect('Content-Length', '710', done);
+        .expect('Content-Length', '1456', done);
     });
     it('should get the path /js/homePage.js', done => {
       request(app)
@@ -28,7 +28,7 @@ describe('GET', () => {
         .set('Accept', '*/*')
         .expect(200)
         .expect('Content-Type', 'application/javascript')
-        .expect('Content-Length', '1195', done);
+        .expect('Content-Length', '4532', done);
     });
     it('should get the path /images/create.svg', done => {
       request(app)
