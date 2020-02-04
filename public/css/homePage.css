@@ -63,14 +63,14 @@
   height: 20px;
 }
 
-.removeButton {
+.deleteImage {
   background-color: transparent;
   border: none;
 }
 
 .createButton,
 .addButton,
-.removeButton {
+.deleteImage {
   cursor: pointer;
 }
 
@@ -106,4 +106,14 @@
 
 .addTaskBar {
   display: flex;
+}
+
+.removeImage {
+  height: 10px;
+  margin: 1.5% 0% 1.5% 0%;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
 }

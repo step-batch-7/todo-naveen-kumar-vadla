@@ -39,12 +39,18 @@ const createTasksAdder = () => {
   return taskAdder;
 };
 
-const createTasksContainer = tasks => '';
+const generateSubtasks = (subTasksHtml, subTask) => {
+  const subTaskElements = `<div id="${subTask.id}" class="task-item">
+    <p><input type="checkbox"> ${subTask.task}</p>
+    <img src="images/remove.svg" class="svg removeImage" onclick="removeTask()">
+    </div>`;
+  return subTasksHtml + subTaskElements;
+};
 
 const createTasks = tasks => {
   const tasksContainer = `<div class="list-items">
     ${createTasksAdder()}
-    ${createTasksContainer(tasks)}
+    <div class="subtasks">${tasks.reduce(generateSubtasks, '')}</div>
   </div>`;
   return tasksContainer;
 };
@@ -52,7 +58,8 @@ const createTasks = tasks => {
 const createListHeader = title => {
   const listHeader = `<div class="list-header">
     <h3 class="list-title">${title}</h3>
-    <img src="images/delete.svg" class="svg removeButton" onclick="deleteList(event)">
+    <img src="images/delete.svg" class="svg deleteImage" 
+    onclick="deleteList(event)">
   </div>`;
   return listHeader;
 };
