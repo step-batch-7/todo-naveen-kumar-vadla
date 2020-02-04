@@ -11,13 +11,13 @@ Data Structure :
       [{list1}, {list2}...]
 
   * lists --> Object contains title and listOfTasks
-      { title: '<title>' tasks: [{task1}, {task1}, {task1}]}
+      { id : <number>, title: '<title>' tasks: [{task1}, {task1}, {task1}]}
 
   * tasks --> Array of task Objects and
       [{task1}, {task1}, {task1}]
 
   * task1,task2... --> Objects contains task and isDone
-      { task:'<task>', isDone:'true/false'}
+      { id: <number>, task:'<task>', isDone:'true/false'}
   
   ex: 
   [
