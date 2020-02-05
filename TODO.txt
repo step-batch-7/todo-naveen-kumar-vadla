@@ -11,10 +11,10 @@ Data Structure :
       [{list1}, {list2}...]
 
   * lists --> Object contains title and listOfTasks
-      { id : <number>, title: '<title>' tasks: [{task1}, {task1}, {task1}]}
+      { id: <number>, title: '<title>' tasks: [{task1}, {task1}, {task1}]}
 
   * tasks --> Array of task Objects and
-      [{task1}, {task1}, {task1}]
+      [{task1}, {task1}, {task1}...]
 
   * task1,task2... --> Objects contains task and isDone
       { id: <number>, task:'<task>', isDone:'true/false'}
@@ -22,11 +22,12 @@ Data Structure :
   ex: 
   [
     {
+      id: 1;
       title:'Improve english grammar '
       tasks: [ 
-        { task : 'reading english novel', isDone: 'false'},
-        { task : 'watching english tv shows', isDone: 'true'},
-        { task : 'speaking in english everyTime',isDone: 'false'},
+        { id: 1, work : 'reading english novel' },
+        { id: 2, work : 'watching english tv shows' },
+        { id: 3, work : 'speaking in english everyTime' },
       ]
     }
   ]

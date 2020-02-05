@@ -23,13 +23,13 @@ const createList = () => {
 const deleteList = event => {
   const [, , task] = event.path;
   const taskId = task.id;
-  sendXHR('POST', '/removeList', `id=${taskId}`, generateTasks);
+  sendXHR('POST', '/removeList', `listId=${taskId}`, generateTasks);
 };
 
 const addTask = event => {
   const textBox = event.target.previousElementSibling;
   const [, , , list] = event.path;
-  const message = `id=${list.id}&work=${textBox.value}`;
+  const message = `listId=${list.id}&work=${textBox.value}`;
   sendXHR('POST', '/addTask', message, generateTasks);
 };
 
@@ -53,7 +53,8 @@ const createTasksAdder = () => {
 const generateTasksHtml = (allTasksHtml, task) => {
   const taskHtml = `<div id="${task.id}" class="task-item">
     <p><input type="checkbox"> ${task.work}</p>
-    <img src="images/remove.svg" class="svg removeImage" onclick="removeTask(event)">
+    <img src="images/remove.svg" class="svg removeImage" 
+    onclick="removeTask(event)">
     </div>`;
   return allTasksHtml + taskHtml;
 };
