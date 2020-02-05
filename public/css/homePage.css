@@ -59,8 +59,12 @@
   background-color: lightskyblue;
 }
 
+.addButton {
+  padding: 0.4%;
+}
+
 .svg {
-  height: 20px;
+  height: 16px;
 }
 
 .deleteImage {
