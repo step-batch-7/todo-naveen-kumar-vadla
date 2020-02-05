@@ -26,19 +26,26 @@ const deleteList = event => {
   sendXHR('POST', '/removeList', `id=${taskId}`, generateTasks);
 };
 
-const addTask = () => {
+const addTask = event => {
   const textBox = event.target.previousElementSibling;
   const [, , , list] = event.path;
-  sendXHR('POST', '/addTask', `id=${list.id}&work=${textBox.value}`, generateTasks);
+  const message = `id=${list.id}&work=${textBox.value}`;
+  sendXHR('POST', '/addTask', message, generateTasks);
 };
 
-const removeTask = () => {};
+const removeTask = event => {
+  const [, taskItem, , , list] = event.path;
+  const taskId = taskItem.id;
+  const listId = list.id;
+  const message = `taskId=${taskId}&listId=${listId}`;
+  sendXHR('POST', '/removeTask', message, generateTasks);
+};
 
 const createTasksAdder = () => {
   const taskAdder = `<div class="addTaskBar">
     <input type="text" name="task"  
     placeholder="Add your task here" class="addTask">
-      <img src="images/add.svg" class="svg addButton" onclick="addTask()">
+      <img src="images/add.svg" class="svg addButton" onclick="addTask(event)">
   </div>`;
   return taskAdder;
 };
@@ -46,7 +53,7 @@ const createTasksAdder = () => {
 const generateTasksHtml = (allTasksHtml, task) => {
   const taskHtml = `<div id="${task.id}" class="task-item">
     <p><input type="checkbox"> ${task.work}</p>
-    <img src="images/remove.svg" class="svg removeImage" onclick="removeTask()">
+    <img src="images/remove.svg" class="svg removeImage" onclick="removeTask(event)">
     </div>`;
   return allTasksHtml + taskHtml;
 };
