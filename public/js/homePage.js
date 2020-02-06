@@ -22,7 +22,7 @@ const createList = () => {
 };
 
 const deleteList = event => {
-  const [, , task] = event.path;
+  const [, , , task] = event.path;
   const taskId = task.id;
   sendXHR('POST', '/removeList', `listId=${taskId}`, generateTasks);
 };
@@ -84,8 +84,10 @@ const createTasks = list => {
 const createListHeader = title => {
   const listHeader = `<div class="list-header">
     <h3 class="list-title">${title}</h3>
-    <img src="images/delete.svg" class="svg deleteImage" 
-    onclick="deleteList(event)">
+    <div><img src="images/edit.svg" class="editImage" 
+    onclick="renameListTitle(event)">
+    <img src="images/delete.svg" class="deleteImage" 
+    onclick="deleteList(event)"></div>
   </div>`;
   return listHeader;
 };
