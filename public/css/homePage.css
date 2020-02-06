@@ -81,18 +81,19 @@
 #todo-lists {
   overflow: auto;
   height: 600px;
+  background: lightyellow;
 }
 
 .list {
   display: flex;
   flex-flow: column wrap;
-  margin: 0.2%;
+  margin: 1%;
   border: 1px solid black;
   background-color: lightslategray;
 }
 
 .list-items {
-  margin: 1%;
+  padding: 1%;
 }
 
 .list-title {
@@ -104,8 +105,7 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid black;
-  margin: 1%;
-  padding: 0.5% 0% 0.5% 0%;
+  padding: 1%;
 }
 
 .addTaskBar {
@@ -120,4 +120,9 @@
 .task-item {
   display: flex;
   justify-content: space-between;
+}
+
+.addTaskTitle {
+  padding: 0.5%;
+  margin: 0%;
 }

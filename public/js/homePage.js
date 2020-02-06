@@ -16,7 +16,8 @@ const sendXHR = (method, url, message, callback) => {
 const createList = () => {
   const createButton = document.querySelector('.createButton');
   const inputBox = createButton.previousElementSibling;
-  sendXHR('POST', '/createList', `title=${inputBox.value}`, generateTasks);
+  const message = `title=${inputBox.value}`;
+  inputBox.value && sendXHR('POST', '/createList', message, generateTasks);
   inputBox.value = '';
 };
 
@@ -30,7 +31,7 @@ const addTask = event => {
   const textBox = event.target.previousElementSibling;
   const [, , , list] = event.path;
   const message = `listId=${list.id}&work=${textBox.value}`;
-  sendXHR('POST', '/addTask', message, generateTasks);
+  textBox.value && sendXHR('POST', '/addTask', message, generateTasks);
 };
 
 const removeTask = event => {
@@ -41,8 +42,12 @@ const removeTask = event => {
   sendXHR('POST', '/removeTask', message, generateTasks);
 };
 
+const completeTask = event => {};
+
 const createTasksAdder = () => {
-  const taskAdder = `<div class="addTaskBar">
+  const taskAdder = `
+  <h3 class="addTaskTitle">Add Your Tasks here</h3>
+  <div class="addTaskBar">
     <input type="text" name="task"  
     placeholder="Add your task here" class="addTask">
       <img src="images/add.svg" class="svg addButton" onclick="addTask(event)">
@@ -52,7 +57,7 @@ const createTasksAdder = () => {
 
 const generateTasksHtml = (allTasksHtml, task) => {
   const taskHtml = `<div id="${task.id}" class="task-item">
-    <p><input type="checkbox"> ${task.work}</p>
+    <p><input type="checkbox" onclick="completeTask(event)"> ${task.work}</p>
     <img src="images/remove.svg" class="svg removeImage" 
     onclick="removeTask(event)">
     </div>`;
@@ -60,9 +65,10 @@ const generateTasksHtml = (allTasksHtml, task) => {
 };
 
 const createTasks = list => {
+  const taskAdder = createTasksAdder();
+  const taskshtml = list.tasks.reduce(generateTasksHtml, '');
   const tasksContainer = `<div class="list-items">
-    ${createTasksAdder()}
-    <div class="tasks">${list.tasks.reduce(generateTasksHtml, '')}</div>
+    ${taskAdder}<div class="tasks">${taskshtml}</div>
   </div>`;
   return tasksContainer;
 };
