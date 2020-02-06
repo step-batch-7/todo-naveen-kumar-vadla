@@ -16,8 +16,8 @@ Data Structure :
   * tasks --> Array of task Objects and
       [{task1}, {task1}, {task1}...]
 
-  * task1,task2... --> Objects contains task and isDone
-      { id: <number>, task:'<task>', isDone:'true/false'}
+  * task1,task2... --> Objects contains task and isCompleted
+      { id: <number>, task:'<task>', isCompleted:'true/false'}
   
   ex: 
   [
