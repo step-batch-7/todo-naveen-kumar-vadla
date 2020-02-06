@@ -62,7 +62,7 @@ const generateTasksHtml = (allTasksHtml, task) => {
   let html = `<input type="checkbox" onclick="completeTask(event)">${work}`;
   if (isCompleted) {
     html = `<input type="checkbox" onclick="completeTask(event)" checked>
-     <strike>${work}</strike>`;
+     <strike style="background:#ccc">${work}</strike>`;
   }
   const taskHtml = `<div id="${id}" class="task-item">
     <p>${html}</p>
