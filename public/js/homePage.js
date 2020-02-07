@@ -2,7 +2,6 @@
 
 const createTasksAdder = () => {
   const taskAdder = `
-  <h3 class="addTaskTitle">Add Your Tasks here</h3>
   <div class="addTaskBar">
     <input type="text" name="task"  
     placeholder="Add your task here" class="addTask">
@@ -37,7 +36,8 @@ const createTasks = list => {
 
 const createListHeader = title => {
   const listHeader = `<div class="list-header">
-    <h3 class="list-title">${title}</h3>
+    <h3 class="list-title" onfocusout="editTitle(event)" 
+    contenteditable>${title}</h3>
     <img src="images/delete.svg" class="deleteImage" 
     onclick="deleteList(event)">
   </div>`;

@@ -44,3 +44,10 @@ const completeTask = event => {
   const message = `taskId=${task.id}&listId=${list.id}`;
   sendXHR('POST', '/completeTask', message, generateTasks);
 };
+
+const editTitle = event => {
+  const [header, , list] = event.path;
+  const title = header.innerText;
+  const message = `newTitle=${title}&listId=${list.id}`;
+  sendXHR('POST', '/renameTitle', message, generateTasks);
+};
