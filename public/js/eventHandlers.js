@@ -39,3 +39,9 @@ const removeTask = event => {
   const message = `taskId=${taskItem.id}&listId=${list.id}`;
   sendXHR('POST', '/removeTask', message, generateTasks);
 };
+
+const completeTask = event => {
+  const [, , taskItem, , , list] = event.path;
+  const message = `taskId=${taskItem.id}&listId=${list.id}`;
+  sendXHR('POST', '/completeTask', message, generateTasks);
+};
