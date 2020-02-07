@@ -12,13 +12,16 @@ const createTasksAdder = () => {
 
 const generateTasksHtml = (allTasksHtml, task) => {
   const { id, work, isCompleted } = task;
-  let html = `<input type="checkbox" onclick="completeTask(event)"> ${work}`;
+  let className = '';
+  let checked = '';
   if (isCompleted) {
-    html = `<input type="checkbox" onclick="completeTask(event)" checked> 
-    <span class="completedTask">${work}</span>`;
+    className = 'class="completedTask"';
+    checked = 'checked';
   }
   const taskHtml = `<div id="${id}" class="task-item">
-    <p>${html}</p>
+    <p><input type="checkbox" onclick="completeTask(event)" ${checked}>
+      <span ${className} contenteditable onfocusout="editTask(event)">${work}</span>
+    </p>
     <img src="images/remove.svg" class="svg removeImage" 
     onclick="removeTask(event)">
     </div>`;
