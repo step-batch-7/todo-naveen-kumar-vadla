@@ -58,7 +58,7 @@ const renameListTitle = event => {
   const html = `<input type="text" class="rename" value="${title}" 
   autofocus="autofocus" 
   onfocus="this.selectionEnd = this.value.length;">
-  <img src="./images/tick.svg" class="editTitleImage" onclick="rename(event)">
+  <img src="./images/tick.svg" class="tickImage" onclick="rename(event)">
   <img src="./images/remove.svg" class="closeImage" onclick="loadTasks()">`;
   const regex = new RegExp(`.*<h3 class="list-title">${title}</h3>`);
   list.innerHTML = list.innerHTML.replace(regex, html);

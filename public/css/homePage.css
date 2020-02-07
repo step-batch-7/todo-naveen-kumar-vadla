@@ -85,14 +85,15 @@ body {
 }
 
 .deleteImage,
-.editTitleImage {
+.editTitleImage,
+.tickImage,
+.closeImage {
   background-color: transparent;
   border: none;
   height: 20px;
 }
+
 .closeImage {
-  background-color: transparent;
-  border: none;
   height: 15px;
   margin-top: 3px;
 }

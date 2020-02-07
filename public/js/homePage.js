@@ -38,7 +38,7 @@ const createTasks = list => {
 const createListHeader = title => {
   const listHeader = `<div class="list-header">
     <h3 class="list-title">${title}</h3>
-    <div><img src="images/edit.svg" class="editImage" 
+    <div><img src="images/edit.svg" class="editTitleImage" 
     onclick="renameListTitle(event)">
     <img src="images/delete.svg" class="deleteImage" 
     onclick="deleteList(event)"></div>
