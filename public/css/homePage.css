@@ -85,18 +85,24 @@ body {
 }
 
 .deleteImage,
-.editImage {
+.editTitleImage {
   background-color: transparent;
   border: none;
   height: 20px;
+}
+.closeImage {
+  background-color: transparent;
+  border: none;
+  height: 15px;
+  margin-top: 3px;
 }
 
 .createButton,
 .addButton,
 .deleteImage,
 .removeImage,
-.editImage,
- input[type='checkbox'] {
+.editTitleImage,
+.closeImage input[type='checkbox'] {
   cursor: pointer;
 }
 
@@ -143,6 +149,10 @@ body {
   padding: 0%;
 }
 
+.task-item:hover {
+  background: #cccccc;
+}
+
 .addTaskTitle {
   padding: 0% 0.5% 0.5% 0%;
   margin: 0%;
@@ -152,5 +162,16 @@ body {
 }
 
 .completedTask {
-   color:#606060;
+  color: #606060;
+}
+
+.rename {
+  background: #c0c0c0;
+  border: none;
+  width: 75%;
+  font-weight: 400;
+}
+
+.rename:focus {
+  outline: none;
 }
