@@ -64,13 +64,6 @@ body {
   border: 1px solid #cccccc;
 }
 
-#title:focus,
-.createButton:focus,
-.addButton:focus,
-.addTask:focus {
-  outline: none;
-}
-
 .createButton,
 .addButton {
   background-color: rgba(135, 206, 250, 0.397);
@@ -120,11 +113,7 @@ body {
 
 .list-title {
   margin: 0% 0% 1% 0%;
-  font-weight: 500; 
-}
-
-.list-title:focus {
-  outline: none;
+  font-weight: 500;
 }
 
 .list-header {
@@ -157,6 +146,15 @@ body {
 .task-item p {
   margin: 0.5% 0% 0.5% 0%;
   padding: 0%;
+}
+
+#title:focus,
+.createButton:focus,
+.addButton:focus,
+.addTask:focus,
+.list-title:focus,
+.task-item span:focus {
+  outline: none;
 }
 
 .task-item:hover {
