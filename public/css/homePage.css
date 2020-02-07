@@ -3,6 +3,7 @@ body {
     rgba(194, 194, 194, 0.3),
     rgba(190, 190, 190, 0.3)
   );
+  font-family: sans-serif;
 }
 
 .main-heading {
@@ -109,7 +110,7 @@ body {
 
 .list {
   margin: 1%;
-  background-color: rgb(211, 211, 211);
+  background-color: rgba(227, 227, 227, 0.455);
   border-radius: 5px;
   width: 30%;
   padding: 1%;
@@ -120,7 +121,7 @@ body {
 }
 
 .list-title {
-  margin: 0%;
+  margin: 0% 0% 1% 0%;
   font-weight: 900;
 }
 
@@ -138,6 +139,17 @@ body {
 
 .removeImage {
   height: 10px;
+  margin-top: 1.5%;
+}
+
+.editTitleImage,
+.removeImage {
+  display: none;
+}
+
+.task-item:hover .removeImage,
+.list-header:hover .editTitleImage {
+  display: inline;
 }
 
 .task-item {
@@ -151,7 +163,7 @@ body {
 }
 
 .task-item:hover {
-  background: #cccccc;
+  background: #dedede;
 }
 
 .addTaskTitle {
@@ -163,7 +175,7 @@ body {
 }
 
 .completedTask {
-  color: #606060;
+  color: #909090;
 }
 
 .rename {

@@ -15,8 +15,8 @@ const generateTasksHtml = (allTasksHtml, task) => {
   const { id, work, isCompleted } = task;
   let html = `<input type="checkbox" onclick="completeTask(event)"> ${work}`;
   if (isCompleted) {
-    html = `<input type="checkbox" onclick="completeTask(event)" checked>
-     <strike class="completedTask">${work}</strike>`;
+    html = `<input type="checkbox" onclick="completeTask(event)" checked> 
+    <span class="completedTask">${work}</span>`;
   }
   const taskHtml = `<div id="${id}" class="task-item">
     <p>${html}</p>
@@ -38,7 +38,7 @@ const createTasks = list => {
 const createListHeader = title => {
   const listHeader = `<div class="list-header">
     <h3 class="list-title">${title}</h3>
-    <div><img src="images/edit.svg" class="editTitleImage" 
+    <div class="option"><img src="images/edit.svg" class="editTitleImage" 
     onclick="renameListTitle(event)">
     <img src="images/delete.svg" class="deleteImage" 
     onclick="deleteList(event)"></div>
