@@ -14,34 +14,35 @@ const sendXHR = (method, url, message, callback) => {
 };
 
 const createList = () => {
-  const createButton = document.querySelector('.createButton');
-  const inputBox = createButton.previousElementSibling;
+  const inputBox = document.querySelector('#title');
   const message = `title=${inputBox.value}`;
   inputBox.value && sendXHR('POST', '/createList', message, generateTasks);
   inputBox.value = '';
 };
 
 const deleteList = event => {
-  const [, , , task] = event.path;
-  const taskId = task.id;
-  sendXHR('POST', '/removeList', `listId=${taskId}`, generateTasks);
+  const [, , , list] = event.path;
+  sendXHR('POST', '/removeList', `listId=${list.id}`, generateTasks);
 };
 
 const addTask = event => {
-  const textBox = event.target.previousElementSibling;
   const [, , , list] = event.path;
+  const textBox = event.target.previousElementSibling;
   const message = `listId=${list.id}&work=${textBox.value}`;
   textBox.value && sendXHR('POST', '/addTask', message, generateTasks);
+  textBox.value = '';
 };
 
 const removeTask = event => {
-  const [, taskItem, , , list] = event.path;
-  const message = `taskId=${taskItem.id}&listId=${list.id}`;
+  const [, task, , , list] = event.path;
+  const message = `taskId=${task.id}&listId=${list.id}`;
   sendXHR('POST', '/removeTask', message, generateTasks);
 };
 
 const completeTask = event => {
-  const [, , taskItem, , , list] = event.path;
-  const message = `taskId=${taskItem.id}&listId=${list.id}`;
+  const [, , task, , , list] = event.path;
+  const message = `taskId=${task.id}&listId=${list.id}`;
   sendXHR('POST', '/completeTask', message, generateTasks);
 };
+
+const renameListTitle = event => {};

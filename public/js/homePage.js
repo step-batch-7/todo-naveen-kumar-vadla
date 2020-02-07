@@ -13,10 +13,10 @@ const createTasksAdder = () => {
 
 const generateTasksHtml = (allTasksHtml, task) => {
   const { id, work, isCompleted } = task;
-  let html = `<input type="checkbox" onclick="completeTask(event)">${work}`;
+  let html = `<input type="checkbox" onclick="completeTask(event)"> ${work}`;
   if (isCompleted) {
     html = `<input type="checkbox" onclick="completeTask(event)" checked>
-     <strike style="background:#ccc">${work}</strike>`;
+     <strike class="completedTask">${work}</strike>`;
   }
   const taskHtml = `<div id="${id}" class="task-item">
     <p>${html}</p>
