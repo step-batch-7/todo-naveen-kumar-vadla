@@ -86,7 +86,6 @@ body {
 }
 
 .deleteImage,
-.editTitleImage,
 .tickImage,
 .closeImage {
   background-color: transparent;
@@ -103,7 +102,6 @@ body {
 .addButton,
 .deleteImage,
 .removeImage,
-.editTitleImage,
 .closeImage input[type='checkbox'] {
   cursor: pointer;
 }
@@ -140,15 +138,10 @@ body {
 .removeImage {
   height: 10px;
   margin-top: 1.5%;
-}
-
-.editTitleImage,
-.removeImage {
   display: none;
 }
 
-.task-item:hover .removeImage,
-.list-header:hover .editTitleImage {
+.task-item:hover .removeImage {
   display: inline;
 }
 

@@ -38,10 +38,8 @@ const createTasks = list => {
 const createListHeader = title => {
   const listHeader = `<div class="list-header">
     <h3 class="list-title">${title}</h3>
-    <div class="option"><img src="images/edit.svg" class="editTitleImage" 
-    onclick="renameListTitle(event)">
     <img src="images/delete.svg" class="deleteImage" 
-    onclick="deleteList(event)"></div>
+    onclick="deleteList(event)">
   </div>`;
   return listHeader;
 };

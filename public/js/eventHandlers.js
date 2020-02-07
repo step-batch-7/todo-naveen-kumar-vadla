@@ -44,22 +44,3 @@ const completeTask = event => {
   const message = `taskId=${task.id}&listId=${list.id}`;
   sendXHR('POST', '/completeTask', message, generateTasks);
 };
-
-const rename = event => {
-  const textBox = event.target.previousElementSibling;
-  const [, , list] = event.path;
-  const message = `newTitle=${textBox.value}&listId=${list.id}`;
-  textBox.value && sendXHR('POST', '/renameTitle', message, generateTasks);
-};
-
-const renameListTitle = event => {
-  const [, , , list] = event.path;
-  const [, title] = list.innerHTML.match(/.*<h3 .*>(.*)<\/h3>/);
-  const html = `<input type="text" class="rename" value="${title}" 
-  autofocus="autofocus" 
-  onfocus="this.selectionEnd = this.value.length;">
-  <img src="./images/tick.svg" class="tickImage" onclick="rename(event)">
-  <img src="./images/remove.svg" class="closeImage" onclick="loadTasks()">`;
-  const regex = new RegExp(`.*<h3 class="list-title">${title}</h3>`);
-  list.innerHTML = list.innerHTML.replace(regex, html);
-};
