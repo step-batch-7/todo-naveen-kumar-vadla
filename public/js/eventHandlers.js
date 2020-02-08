@@ -26,7 +26,7 @@ const deleteList = event => {
 };
 
 const addTask = event => {
-  const [, , , list] = event.path;
+  const [, , list] = event.path;
   const textBox = event.target.previousElementSibling;
   const message = `listId=${list.id}&work=${textBox.value}`;
   textBox.value && sendXHR('POST', '/addTask', message, generateTasks);
@@ -57,4 +57,11 @@ const editTask = event => {
   const newWork = `newWork=${work.innerText}`;
   const message = `${newWork}&taskId=${task.id}&listId=${list.id}`;
   sendXHR('POST', '/editTask', message, generateTasks);
+};
+
+const focusListTitle = event => {
+  const [, , , list] = event.path;
+  const query = `.list[id="${list.id}"] .list-title`;
+  const title = document.querySelector(query);
+  title.focus();
 };

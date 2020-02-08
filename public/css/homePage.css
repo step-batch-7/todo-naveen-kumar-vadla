@@ -6,33 +6,39 @@ body {
   font-family: sans-serif;
 }
 
+.container {
+  background: rgba(245, 245, 245, 0.831);
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+}
+
 .main-heading {
   text-align: center;
   padding: 0.5%;
 }
 
-#task-adder {
+#container-header {
   padding: 1%;
 }
 
 #todo-lists {
   overflow: auto;
-  height: 600px;
+  height: 580px;
   word-wrap: break-word;
   word-break: break-all;
   hyphens: auto;
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
+  padding: 1%;
 }
 
 .main-heading,
-#task-adder,
-#todo-lists {
+.container {
   margin: 1%;
 }
 
-.task-adder-header {
+.container-header-header {
   margin: 0%;
   text-align: center;
   font-weight: 500;
@@ -47,7 +53,6 @@ body {
 #title {
   width: 30%;
   padding: 0.5% 0% 0.5% 1%;
-  background-color: whitesmoke;
   border: none;
 }
 
@@ -65,8 +70,14 @@ body {
 .addTask {
   background: transparent;
   border: none;
-  border-bottom: 1px solid black;
-  width:90%;
+  border-bottom: 1px solid #aaaaaa;
+  width: 90%;
+  padding: 1%;
+}
+
+.addTaskBar {
+  margin: 2%;
+  padding: 2% 0%;
 }
 
 .createButton {
@@ -75,7 +86,8 @@ body {
 }
 
 .addButton {
-  height: 15px;
+  height: 16px;
+  margin-left: 2.5%;
 }
 
 .svg {
@@ -83,33 +95,28 @@ body {
 }
 
 .deleteImage,
-.tickImage,
-.closeImage {
+.tickImage {
   background-color: transparent;
   border: none;
   height: 20px;
-}
-
-.closeImage {
-  height: 15px;
-  margin-top: 3px;
 }
 
 .createButton,
 .addButton,
 .deleteImage,
 .removeImage,
-.cancelImage,
-.closeImage input[type='checkbox'] {
+.editImage,
+ input[type='checkbox'] {
   cursor: pointer;
 }
 
 .list {
   margin: 1%;
-  background-color: rgba(227, 227, 227, 0.455);
+  background: rgba(230, 230, 230, 0.455);
   border-radius: 5px;
-  width: 28%;
+  width: 29%;
   padding: 1%;
+  border: 1px solid #cccccc;
 }
 
 .list-items {
@@ -124,7 +131,6 @@ body {
 .list-header {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #bbbbbb;
   padding: 1%;
 }
 
@@ -166,10 +172,10 @@ body {
 }
 
 .tasks {
-  padding: 1%;
+  padding: 2%;
 }
 
-.cancelImage {
-  height: 11px;
-  margin-bottom: 1px;
+.editImage {
+  height: 25px;
+  margin-bottom: -3px;
 }
