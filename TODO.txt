@@ -85,3 +85,6 @@ Tasks :
 --DONE--  * Create a homePage with title todo and an input field to enter todoList name and create button
 
 --DONE--  * Add tests for homePage
+
+* found a bug needs to fix later
+  The bug is :- if you give any title or task with double quotes it's a problem. whats happening is while generating we are giving input value = "in double quotes title value ". Here if title value contains double quotes it will end there itself. 
