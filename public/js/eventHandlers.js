@@ -21,7 +21,7 @@ const createList = () => {
 };
 
 const deleteList = event => {
-  const [, , list] = event.path;
+  const [, , , list] = event.path;
   sendXHR('POST', '/removeList', `listId=${list.id}`, generateTasks);
 };
 
@@ -34,13 +34,13 @@ const addTask = event => {
 };
 
 const removeTask = event => {
-  const [, task, , , list] = event.path;
+  const [, task, , list] = event.path;
   const message = `taskId=${task.id}&listId=${list.id}`;
   sendXHR('POST', '/removeTask', message, generateTasks);
 };
 
 const completeTask = event => {
-  const [, , task, , , list] = event.path;
+  const [, , task, , list] = event.path;
   const message = `taskId=${task.id}&listId=${list.id}`;
   sendXHR('POST', '/completeTask', message, generateTasks);
 };
@@ -53,7 +53,7 @@ const editTitle = event => {
 };
 
 const editTask = event => {
-  const [work, , task, , , list] = event.path;
+  const [work, , task, , list] = event.path;
   const newWork = `newWork=${work.innerText}`;
   const message = `${newWork}&taskId=${task.id}&listId=${list.id}`;
   sendXHR('POST', '/editTask', message, generateTasks);
