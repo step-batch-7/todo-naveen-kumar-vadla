@@ -14,7 +14,7 @@ const generateTasksHtml = (allTasksHtml, task) => {
       ${work}</span>
     </p>
     <div class="options">
-      <img src="images/edit.svg" class="editTaskImage" 
+      <img src="images/editTask.svg" class="editTaskImage" 
         onclick="focusListTask(event)"> 
       <img src="images/remove.svg" class="removeImage" 
         onclick="removeTask(event)">

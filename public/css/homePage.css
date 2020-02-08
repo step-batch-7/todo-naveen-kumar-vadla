@@ -141,7 +141,9 @@ input[type='checkbox'] {
 }
 
 .removeImage {
-  height: 15px;
+  height: 18px;
+  margin-bottom: -1.5px;
+
 }
 
 .editTaskImage {
