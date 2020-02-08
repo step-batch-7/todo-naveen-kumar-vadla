@@ -21,7 +21,7 @@ const createList = () => {
 };
 
 const deleteList = event => {
-  const [, , , list] = event.path;
+  const [, , list] = event.path;
   sendXHR('POST', '/removeList', `listId=${list.id}`, generateTasks);
 };
 
