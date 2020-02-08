@@ -22,7 +22,8 @@ body {
   word-break: break-all;
   hyphens: auto;
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
+  align-items: flex-start;
 }
 
 .main-heading,
@@ -103,7 +104,7 @@ body {
   margin: 1%;
   background-color: rgba(227, 227, 227, 0.455);
   border-radius: 5px;
-  width: 30%;
+  width: 28%;
   padding: 1%;
 }
 
