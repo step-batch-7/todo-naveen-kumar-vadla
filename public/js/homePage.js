@@ -10,11 +10,15 @@ const generateTasksHtml = (allTasksHtml, task) => {
   }
   const taskHtml = `<div id="${id}" class="task-item">
     <p><input type="checkbox" onclick="completeTask(event)" ${checked}>
-      <span ${className} contenteditable onfocusout="editTask(event)">
+      <span ${className} edit.svg onfocusout="editTask(event)">
       ${work}</span>
     </p>
-    <img src="images/remove.svg" class="svg removeImage" 
-    onclick="removeTask(event)">
+    <div class="options">
+      <img src="images/edit.svg" class="editTaskImage" 
+        onclick="focusListTask(event)"> 
+      <img src="images/remove.svg" class="removeImage" 
+        onclick="removeTask(event)">
+    </div>
     </div>`;
   return allTasksHtml + taskHtml;
 };
@@ -31,7 +35,7 @@ const createTasks = list => {
 
 const createListHeader = title => {
   const listHeader = `<div class="list-header">
-    <h3 class="list-title" onfocusout="editTitle(event)" contenteditable >
+    <h3 class="list-title" onfocusout="editTitle(event)" edit.svg >
       ${title}
     </h3>
     <div class="options"> 

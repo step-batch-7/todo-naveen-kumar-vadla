@@ -63,5 +63,14 @@ const focusListTitle = event => {
   const [, , , list] = event.path;
   const query = `.list[id="${list.id}"] .list-title`;
   const title = document.querySelector(query);
+  title.setAttribute('contenteditable', 'true');
   title.focus();
+};
+
+const focusListTask = event => {
+  const [, , taskItem, , list] = event.path;
+  const query = `.list[id="${list.id}"] .task-item[id="${taskItem.id}"] span`;
+  const task = document.querySelector(query);
+  task.setAttribute('contenteditable', 'true');
+  task.focus();
 };

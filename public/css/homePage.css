@@ -38,7 +38,7 @@ body {
   margin: 1%;
 }
 
-.container-header-header {
+.task-adder-header {
   margin: 0%;
   text-align: center;
   font-weight: 500;
@@ -70,13 +70,13 @@ body {
 .addTask {
   background: transparent;
   border: none;
-  border-bottom: 1px solid #aaaaaa;
+  border-bottom: 1px solid #dddddd;
   width: 90%;
   padding: 1%;
 }
 
 .addTaskBar {
-  margin: 2%;
+  margin: 3%;
   padding: 2% 0%;
 }
 
@@ -106,7 +106,8 @@ body {
 .deleteImage,
 .removeImage,
 .editImage,
- input[type='checkbox'] {
+.editTaskImage,
+input[type='checkbox'] {
   cursor: pointer;
 }
 
@@ -115,7 +116,6 @@ body {
   background: rgba(230, 230, 230, 0.455);
   border-radius: 5px;
   width: 29%;
-  padding: 1%;
   border: 1px solid #cccccc;
 }
 
@@ -131,26 +131,42 @@ body {
 .list-header {
   display: flex;
   justify-content: space-between;
-  padding: 1%;
+  margin: 3%;
+}
+
+.removeImage,
+.editTaskImage {
+  display: none;
+  margin-top: 5px;
 }
 
 .removeImage {
-  height: 10px;
-  margin-top: 1.5%;
-  display: none;
+  height: 15px;
 }
 
-.task-item:hover .removeImage {
+.editTaskImage {
+  height: 20px;
+  margin-bottom: -2px;
+}
+
+
+.task-item:hover {
+  background: #e8e8e8af;
+}
+
+.task-item:hover .removeImage,
+  .task-item:hover .editTaskImage {
   display: inline;
 }
 
 .task-item {
   display: flex;
   justify-content: space-between;
+  height: 30px;
 }
 
 .task-item p {
-  margin: 0.5% 0% 0.5% 0%;
+  margin: 0.5% 0%;
   padding: 0%;
 }
 
@@ -163,16 +179,12 @@ body {
   outline: none;
 }
 
-.task-item:hover {
-  background: #dedede;
-}
-
 .completedTask {
   color: #909090;
 }
 
 .tasks {
-  padding: 2%;
+  margin: 3%;
 }
 
 .editImage {
