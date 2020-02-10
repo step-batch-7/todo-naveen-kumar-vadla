@@ -153,6 +153,17 @@ describe('POST', () => {
         .expect('content-Length', '1015', done);
     });
   });
+  describe('/removeList', () => {
+    it('Should create the new list with given title', done => {
+      request(app)
+        .post('/removeList')
+        .set('Accept', '*/*')
+        .send('listId=4')
+        .expect(200)
+        .expect('content-Type', 'application/json')
+        .expect('content-Length', '977', done);
+    });
+  });
 });
 
 describe('METHOD NOT ALLOWED', () => {
