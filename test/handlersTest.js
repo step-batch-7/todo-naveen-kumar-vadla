@@ -217,6 +217,17 @@ describe('POST', () => {
         .expect('content-Length', '971', done);
     });
   });
+  describe('/editTask', () => {
+    it('Should modify the task/work of given list with given new task/work', done => {
+      request(app)
+        .post('/editTask')
+        .set('Accept', '*/*')
+        .send('newWork=reading&listId=3&taskId=1')
+        .expect(200)
+        .expect('content-Type', 'application/json')
+        .expect('content-Length', '968', done);
+    });
+  });
 });
 
 describe('METHOD NOT ALLOWED', () => {
