@@ -27,12 +27,64 @@ describe('GET', () => {
         .expect(200)
         .expect('Content-Type', 'application/javascript', done);
     });
+    it('should get the path /js/eventHandlers.js', done => {
+      request(app)
+        .get('/js/eventHandlers.js')
+        .set('Accept', '*/*')
+        .expect(200)
+        .expect('Content-Type', 'application/javascript', done);
+    });
     it('should get the path /images/create.svg', done => {
       request(app)
         .get('/images/create.svg')
         .set('Accept', '*/*')
         .expect(200)
         .expect('Content-Type', 'image/svg+xml', done);
+    });
+    it('should get the path /images/edit.svg', done => {
+      request(app)
+        .get('/images/edit.svg')
+        .set('Accept', '*/*')
+        .expect(200)
+        .expect('Content-Type', 'image/svg+xml', done);
+    });
+    it('should get the path /images/delete.svg', done => {
+      request(app)
+        .get('/images/delete.svg')
+        .set('Accept', '*/*')
+        .expect(200)
+        .expect('Content-Type', 'image/svg+xml', done);
+    });
+    it('should get the path /images/tick.svg', done => {
+      request(app)
+        .get('/images/tick.svg')
+        .set('Accept', '*/*')
+        .expect(200)
+        .expect('Content-Type', 'image/svg+xml', done);
+    });
+    it('should get the path /images/editTask.svg', done => {
+      request(app)
+        .get('/images/editTask.svg')
+        .set('Accept', '*/*')
+        .expect(200)
+        .expect('Content-Type', 'image/svg+xml', done);
+    });
+    it('should get the path /images/remove.svg', done => {
+      request(app)
+        .get('/images/remove.svg')
+        .set('Accept', '*/*')
+        .expect(200)
+        .expect('Content-Type', 'image/svg+xml', done);
+    });
+  });
+
+  describe('/tasks', () => {
+    it('Should give the tasks as stringified array of objects', done => {
+      request(app)
+        .get('/tasks')
+        .set('Accept', '*/*')
+        .expect(200)
+        .expect('content-Length', '977', done);
     });
   });
 
@@ -49,18 +101,16 @@ describe('GET', () => {
   });
 });
 
-describe('POST', () => {
-  describe('FILE NOT FOUND', () => {
-    it('Should give file not found if file not exist', done => {
-      request(app)
-        .post('/badFile')
-        .set('Accept', '*/*')
-        .send('name=raja&comment=wonderful+site')
-        .expect(404)
-        .expect('Content-Type', 'text/plain')
-        .expect('Content-Length', '18')
-        .expect('404 File Not Found', done);
-    });
+describe('POST FILE NOT FOUND', () => {
+  it('Should give file not found if file not exist', done => {
+    request(app)
+      .post('/badFile')
+      .set('Accept', '*/*')
+      .send('name=raja&comment=wonderful+site')
+      .expect(404)
+      .expect('Content-Type', 'text/plain')
+      .expect('Content-Length', '18')
+      .expect('404 File Not Found', done);
   });
 });
 

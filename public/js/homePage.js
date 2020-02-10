@@ -10,7 +10,7 @@ const generateTasksHtml = (allTasksHtml, task) => {
   }
   const taskHtml = `<div id="${id}" class="task-item">
     <p><input type="checkbox" onclick="completeTask(event)" ${checked}>
-      <input class="${className}" edit.svg onfocusout="editTask(event)"
+      <input class="${className}" onfocusout="editTask(event)"
       onfocus="this.selectionStart = this.selectionEnd = this.value.length;"
       value="${work}">
     </p>
