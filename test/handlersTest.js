@@ -142,6 +142,17 @@ describe('POST', () => {
         .expect('404 File Not Found', done);
     });
   });
+  describe('/createList', () => {
+    it('Should create the new list with given title', done => {
+      request(app)
+        .post('/createList')
+        .set('Accept', '*/*')
+        .send('title=English')
+        .expect(200)
+        .expect('content-Type', 'application/json')
+        .expect('content-Length', '1015', done);
+    });
+  });
 });
 
 describe('METHOD NOT ALLOWED', () => {
