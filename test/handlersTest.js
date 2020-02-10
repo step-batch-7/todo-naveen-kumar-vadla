@@ -206,6 +206,17 @@ describe('POST', () => {
         .expect('content-Length', '977', done);
     });
   });
+  describe('/editTitle', () => {
+    it('Should modify the title of given list with given new title', done => {
+      request(app)
+        .post('/editTitle')
+        .set('Accept', '*/*')
+        .send('newTitle=Naveen&listId=3')
+        .expect(200)
+        .expect('content-Type', 'application/json')
+        .expect('content-Length', '971', done);
+    });
+  });
 });
 
 describe('METHOD NOT ALLOWED', () => {
