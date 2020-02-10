@@ -42,7 +42,7 @@ const removeTask = event => {
 const completeTask = event => {
   const [, , task, , list] = event.path;
   const message = `taskId=${task.id}&listId=${list.id}`;
-  sendXHR('POST', '/completeTask', message, generateTasks);
+  sendXHR('POST', '/toggleTaskCompletion', message, generateTasks);
 };
 
 const editTitle = event => {
