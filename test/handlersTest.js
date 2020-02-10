@@ -21,70 +21,81 @@ describe('GET', () => {
         .get('/')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'text/html', done);
+        .expect('Content-Type', 'text/html')
+        .expect('content-Length', '894')
+        .expect(/<title>TODO<\/title>/, done);
     });
     it('should get the path /css/homePage.css', done => {
       request(app)
         .get('/css/homePage.css')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'text/css', done);
+        .expect('Content-Type', 'text/css')
+        .expect(/body {/, done);
     });
     it('should get the path /js/homePage.js', done => {
       request(app)
         .get('/js/homePage.js')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'application/javascript', done);
+        .expect('Content-Type', 'application/javascript')
+        .expect(/'use strict'/, done);
     });
     it('should get the path /js/eventHandlers.js', done => {
       request(app)
         .get('/js/eventHandlers.js')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'application/javascript', done);
+        .expect('Content-Type', 'application/javascript')
+        .expect(/'use strict'/, done);
     });
     it('should get the path /images/create.svg', done => {
       request(app)
         .get('/images/create.svg')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'image/svg+xml', done);
+        .expect('Content-Type', 'image/svg+xml')
+        .expect('content-Length', '1375', done);
     });
     it('should get the path /images/edit.svg', done => {
       request(app)
         .get('/images/edit.svg')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'image/svg+xml', done);
+        .expect('Content-Type', 'image/svg+xml')
+        .expect('content-Length', '836', done);
     });
     it('should get the path /images/delete.svg', done => {
       request(app)
         .get('/images/delete.svg')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'image/svg+xml', done);
+        .expect('Content-Type', 'image/svg+xml')
+        .expect('content-Length', '2075', done);
     });
     it('should get the path /images/tick.svg', done => {
       request(app)
         .get('/images/tick.svg')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'image/svg+xml', done);
+        .expect('Content-Type', 'image/svg+xml')
+        .expect('content-Length', '1370', done);
     });
     it('should get the path /images/editTask.svg', done => {
       request(app)
         .get('/images/editTask.svg')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'image/svg+xml', done);
+        .expect('Content-Type', 'image/svg+xml')
+        .expect('content-Length', '1751', done);
     });
     it('should get the path /images/remove.svg', done => {
       request(app)
         .get('/images/remove.svg')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'image/svg+xml', done);
+        .expect('Content-Type', 'image/svg+xml')
+        .expect('content-Length', '1217', done);
     });
   });
 
@@ -94,6 +105,7 @@ describe('GET', () => {
         .get('/tasks')
         .set('Accept', '*/*')
         .expect(200)
+        .expect('content-Type', 'application/json')
         .expect('content-Length', '977', done);
     });
   });
