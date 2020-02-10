@@ -154,7 +154,7 @@ describe('POST', () => {
     });
   });
   describe('/removeList', () => {
-    it('Should create the new list with given title', done => {
+    it('Should remove the list with give id', done => {
       request(app)
         .post('/removeList')
         .set('Accept', '*/*')
@@ -162,6 +162,17 @@ describe('POST', () => {
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '977', done);
+    });
+  });
+  describe('/addTask', () => {
+    it('Should add the given work/task to the given list', done => {
+      request(app)
+        .post('/addTask')
+        .set('Accept', '*/*')
+        .send('listId=3&work=reading books')
+        .expect(200)
+        .expect('content-Type', 'application/json')
+        .expect('content-Length', '1029', done);
     });
   });
 });
