@@ -154,7 +154,7 @@ describe('POST', () => {
     });
   });
   describe('/removeList', () => {
-    it('Should remove the list with give id', done => {
+    it('Should remove the list with given id', done => {
       request(app)
         .post('/removeList')
         .set('Accept', '*/*')
@@ -173,6 +173,17 @@ describe('POST', () => {
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '1029', done);
+    });
+  });
+  describe('/removeTask', () => {
+    it('Should remove the given work/task form the given list', done => {
+      request(app)
+        .post('/removeTask')
+        .set('Accept', '*/*')
+        .send('listId=3&taskId=7')
+        .expect(200)
+        .expect('content-Type', 'application/json')
+        .expect('content-Length', '977', done);
     });
   });
 });
