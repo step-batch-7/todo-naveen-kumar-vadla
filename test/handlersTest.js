@@ -186,6 +186,26 @@ describe('POST', () => {
         .expect('content-Length', '977', done);
     });
   });
+  describe('/toggleTaskCompletion', () => {
+    it('Should make toggle the isCompletion of given work/task from false to true', done => {
+      request(app)
+        .post('/toggleTaskCompletion')
+        .set('Accept', '*/*')
+        .send('listId=3&taskId=6')
+        .expect(200)
+        .expect('content-Type', 'application/json')
+        .expect('content-Length', '976', done);
+    });
+    it('Should make toggle the isCompletion of given work/task from true to false', done => {
+      request(app)
+        .post('/toggleTaskCompletion')
+        .set('Accept', '*/*')
+        .send('listId=3&taskId=6')
+        .expect(200)
+        .expect('content-Type', 'application/json')
+        .expect('content-Length', '977', done);
+    });
+  });
 });
 
 describe('METHOD NOT ALLOWED', () => {
