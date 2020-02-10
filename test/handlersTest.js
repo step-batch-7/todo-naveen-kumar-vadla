@@ -1,10 +1,20 @@
 'use strict';
 const request = require('supertest');
+const fs = require('fs');
+const sinon = require('sinon');
 
 let app = require('../lib/handlers');
 app = app.handleRequests.bind(app);
 
 describe('GET', () => {
+  beforeEach(() => {
+    sinon.replace(fs, 'writeFileSync', () => {});
+  });
+
+  afterEach(() => {
+    sinon.restore();
+  });
+
   describe('Home Page', () => {
     it('should get the path / or index.html', done => {
       request(app)
@@ -100,17 +110,25 @@ describe('GET', () => {
     });
   });
 });
+describe('POST', () => {
+  beforeEach(() => {
+    sinon.replace(fs, 'writeFileSync', () => {});
+  });
 
-describe('POST FILE NOT FOUND', () => {
-  it('Should give file not found if file not exist', done => {
-    request(app)
-      .post('/badFile')
-      .set('Accept', '*/*')
-      .send('name=raja&comment=wonderful+site')
-      .expect(404)
-      .expect('Content-Type', 'text/plain')
-      .expect('Content-Length', '18')
-      .expect('404 File Not Found', done);
+  afterEach(() => {
+    sinon.restore();
+  });
+  describe('FILE NOT FOUND', () => {
+    it('Should give file not found if file not exist', done => {
+      request(app)
+        .post('/badFile')
+        .set('Accept', '*/*')
+        .send('name=raja&comment=wonderful+site')
+        .expect(404)
+        .expect('Content-Type', 'text/plain')
+        .expect('Content-Length', '18')
+        .expect('404 File Not Found', done);
+    });
   });
 });
 
