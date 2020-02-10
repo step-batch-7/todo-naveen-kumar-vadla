@@ -39,7 +39,7 @@ const removeTask = event => {
   sendXHR('POST', '/removeTask', message, generateTasks);
 };
 
-const completeTask = event => {
+const toggleTaskCompletion = event => {
   const [, , task, , list] = event.path;
   const message = `taskId=${task.id}&listId=${list.id}`;
   sendXHR('POST', '/toggleTaskCompletion', message, generateTasks);
@@ -58,18 +58,16 @@ const editTask = event => {
   sendXHR('POST', '/editTask', message, generateTasks);
 };
 
+const getElementAndAddFocus = query => document.querySelector(query).focus();
+
 const focusListTitle = event => {
   const [, , , list] = event.path;
   const query = `.list[id="${list.id}"] .list-title`;
-  const title = document.querySelector(query);
-  title.setAttribute('contenteditable', 'true');
-  title.focus();
+  getElementAndAddFocus(query);
 };
 
 const focusListTask = event => {
   const [, , taskItem, , list] = event.path;
   const query = `.list[id="${list.id}"] .task-item[id="${taskItem.id}"] .work`;
-  const task = document.querySelector(query);
-  task.setAttribute('contenteditable', 'true');
-  task.focus();
+  getElementAndAddFocus(query);
 };

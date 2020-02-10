@@ -9,7 +9,7 @@ const generateTasksHtml = (allTasksHtml, task) => {
     checked = 'checked';
   }
   const taskHtml = `<div id="${id}" class="task-item">
-    <p><input type="checkbox" onclick="completeTask(event)" ${checked}>
+    <p><input type="checkbox" onclick="toggleTaskCompletion(event)" ${checked}>
       <input class="${className}" onfocusout="editTask(event)"
       onfocus="this.selectionStart = this.selectionEnd = this.value.length;"
       value="${work}">
