@@ -135,7 +135,7 @@ describe('POST', () => {
       request(app)
         .post('/badFile')
         .set('Accept', '*/*')
-        .send('name=raja&comment=wonderful+site')
+        .send('{ "name":"raja", "comment":"wonderful+site" }')
         .expect(404)
         .expect('Content-Type', 'text/plain')
         .expect('Content-Length', '18')
@@ -147,7 +147,7 @@ describe('POST', () => {
       request(app)
         .post('/createList')
         .set('Accept', '*/*')
-        .send('title=English')
+        .send('{ "title":"English" }')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '1015', done);
@@ -158,7 +158,7 @@ describe('POST', () => {
       request(app)
         .post('/removeList')
         .set('Accept', '*/*')
-        .send('listId=4')
+        .send('{ "listId":"4" }')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '977', done);
@@ -169,7 +169,7 @@ describe('POST', () => {
       request(app)
         .post('/addTask')
         .set('Accept', '*/*')
-        .send('listId=3&work=reading books')
+        .send('{ "listId":"3", "work":"reading books" }')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '1029', done);
@@ -180,7 +180,7 @@ describe('POST', () => {
       request(app)
         .post('/removeTask')
         .set('Accept', '*/*')
-        .send('listId=3&taskId=7')
+        .send('{ "listId":"3", "taskId":"7" }')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '977', done);
@@ -191,7 +191,7 @@ describe('POST', () => {
       request(app)
         .post('/toggleTaskCompletion')
         .set('Accept', '*/*')
-        .send('listId=3&taskId=6')
+        .send('{ "listId":"3", "taskId":"6" }')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '976', done);
@@ -200,7 +200,7 @@ describe('POST', () => {
       request(app)
         .post('/toggleTaskCompletion')
         .set('Accept', '*/*')
-        .send('listId=3&taskId=6')
+        .send('{ "listId":"3", "taskId":"6" }')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '977', done);
@@ -211,7 +211,7 @@ describe('POST', () => {
       request(app)
         .post('/editTitle')
         .set('Accept', '*/*')
-        .send('newTitle=Naveen&listId=3')
+        .send('{ "newTitle":"Naveen", "listId":"3" }')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '971', done);
@@ -222,7 +222,7 @@ describe('POST', () => {
       request(app)
         .post('/editTask')
         .set('Accept', '*/*')
-        .send('newWork=reading&listId=3&taskId=1')
+        .send('{ "newWork":"reading", "listId":"3", "taskId":"1"}')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '968', done);
