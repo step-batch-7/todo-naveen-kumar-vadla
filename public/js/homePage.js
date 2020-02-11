@@ -34,11 +34,11 @@ const createTasks = list => {
   return addTaskBar + tasksContainer;
 };
 
-const createListHeader = title => {
+const createListHeader = list => {
   const listHeader = `<div class="list-header">
     <input class="list-title" onfocusout="editTitle(event)"
     onfocus="this.selectionStart = this.selectionEnd = this.value.length;"
-    value="${title}">
+    value="${list.title}">
     <div class="options"> 
      <img src="images/edit.svg" class="editImage" 
       onclick="focusListTitle(event)"> 
@@ -51,7 +51,7 @@ const createListHeader = title => {
 
 const createTodoList = list => {
   const listContainer = document.createElement('div');
-  const header = createListHeader(list.title);
+  const header = createListHeader(list);
   const tasks = createTasks(list);
   listContainer.id = list.id;
   listContainer.classList.add('list');
@@ -59,7 +59,7 @@ const createTodoList = list => {
   return listContainer;
 };
 
-const generateTasks = text => {
+const showTodoLists = text => {
   const todoListContainer = document.querySelector('#todo-lists');
   const todoListsJSON = JSON.parse(text);
   const todoLists = todoListsJSON.map(createTodoList);
@@ -67,6 +67,6 @@ const generateTasks = text => {
   todoLists.forEach(todo => todoListContainer.appendChild(todo));
 };
 
-const loadTasks = () => sendXHR('GET', '/tasks', '', generateTasks);
+const loadTasks = () => sendXHR('GET', '/tasks', '', showTodoLists);
 
 window.onload = loadTasks;

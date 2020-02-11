@@ -16,46 +16,46 @@ const sendXHR = (method, url, message, callback) => {
 const createList = () => {
   const inputBox = document.querySelector('#title');
   const message = `title=${inputBox.value}`;
-  inputBox.value && sendXHR('POST', '/createList', message, generateTasks);
+  inputBox.value && sendXHR('POST', '/createList', message, showTodoLists);
   inputBox.value = '';
 };
 
 const deleteList = event => {
   const [, , , list] = event.path;
-  sendXHR('POST', '/removeList', `listId=${list.id}`, generateTasks);
+  sendXHR('POST', '/removeList', `listId=${list.id}`, showTodoLists);
 };
 
 const addTask = event => {
   const [, , list] = event.path;
   const textBox = event.target.previousElementSibling;
   const message = `listId=${list.id}&work=${textBox.value}`;
-  textBox.value && sendXHR('POST', '/addTask', message, generateTasks);
+  textBox.value && sendXHR('POST', '/addTask', message, showTodoLists);
   textBox.value = '';
 };
 
 const removeTask = event => {
   const [, , task, , list] = event.path;
   const message = `taskId=${task.id}&listId=${list.id}`;
-  sendXHR('POST', '/removeTask', message, generateTasks);
+  sendXHR('POST', '/removeTask', message, showTodoLists);
 };
 
 const toggleTaskCompletion = event => {
   const [, , task, , list] = event.path;
   const message = `taskId=${task.id}&listId=${list.id}`;
-  sendXHR('POST', '/toggleTaskCompletion', message, generateTasks);
+  sendXHR('POST', '/toggleTaskCompletion', message, showTodoLists);
 };
 
 const editTitle = event => {
   const [header, , list] = event.path;
   const message = `newTitle=${header.value}&listId=${list.id}`;
-  sendXHR('POST', '/editTitle', message, generateTasks);
+  sendXHR('POST', '/editTitle', message, showTodoLists);
 };
 
 const editTask = event => {
   const [work, , task, , list] = event.path;
   const newWork = `newWork=${work.value}`;
   const message = `${newWork}&taskId=${task.id}&listId=${list.id}`;
-  sendXHR('POST', '/editTask', message, generateTasks);
+  sendXHR('POST', '/editTask', message, showTodoLists);
 };
 
 const getElementAndAddFocus = query => document.querySelector(query).focus();
