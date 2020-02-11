@@ -13,48 +13,63 @@ const sendXHR = (method, url, message, callback) => {
   xhr.send(message);
 };
 
+const toJSONString = jsonData => JSON.stringify(jsonData);
+
 const createList = () => {
   const inputBox = document.querySelector('#title');
-  const message = `title=${inputBox.value}`;
+  const title = inputBox.value;
+  const message = toJSONString({ title });
   inputBox.value && sendXHR('POST', '/createList', message, showTodoLists);
   inputBox.value = '';
 };
 
 const deleteList = event => {
   const [, , , list] = event.path;
-  sendXHR('POST', '/removeList', `listId=${list.id}`, showTodoLists);
+  const listId = list.id;
+  const message = toJSONString({ listId });
+  sendXHR('POST', '/removeList', message, showTodoLists);
 };
 
 const addTask = event => {
   const [, , list] = event.path;
   const textBox = event.target.previousElementSibling;
-  const message = `listId=${list.id}&work=${textBox.value}`;
+  const work = textBox.value;
+  const listId = list.id;
+  const message = toJSONString({ listId, work });
   textBox.value && sendXHR('POST', '/addTask', message, showTodoLists);
   textBox.value = '';
 };
 
 const removeTask = event => {
   const [, , task, , list] = event.path;
-  const message = `taskId=${task.id}&listId=${list.id}`;
+  const taskId = task.id;
+  const listId = list.id;
+  const message = toJSONString({ taskId, listId });
   sendXHR('POST', '/removeTask', message, showTodoLists);
 };
 
 const toggleTaskCompletion = event => {
   const [, , task, , list] = event.path;
-  const message = `taskId=${task.id}&listId=${list.id}`;
+  const taskId = task.id;
+  const listId = list.id;
+  const message = toJSONString({ taskId, listId });
   sendXHR('POST', '/toggleTaskCompletion', message, showTodoLists);
 };
 
 const editTitle = event => {
   const [header, , list] = event.path;
-  const message = `newTitle=${header.value}&listId=${list.id}`;
+  const newTitle = header.value;
+  const listId = list.id;
+  const message = toJSONString({ newTitle, listId });
   sendXHR('POST', '/editTitle', message, showTodoLists);
 };
 
 const editTask = event => {
   const [work, , task, , list] = event.path;
-  const newWork = `newWork=${work.value}`;
-  const message = `${newWork}&taskId=${task.id}&listId=${list.id}`;
+  const newWork = work.value;
+  const taskId = task.id;
+  const listId = list.id;
+  const message = toJSONString({ newWork, taskId, listId });
   sendXHR('POST', '/editTask', message, showTodoLists);
 };
 
