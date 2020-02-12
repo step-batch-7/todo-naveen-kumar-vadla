@@ -58,19 +58,19 @@ const generateTasksHtml = (allTasksHtml, task) => {
   return allTasksHtml + taskHtml;
 };
 
-const createListBody = list => {
+const createTodoBody = list => {
   const addTaskBar = fillTemplate(addTaskBarTemplate, list);
   const taskshtml = list.tasks.reduce(generateTasksHtml, '');
   const tasksContainer = `<div class="tasks">${taskshtml}</div>`;
   return addTaskBar + tasksContainer;
 };
 
-const createListHeader = list => fillTemplate(ListHeaderTemplate, list);
+const createTodoHeader = list => fillTemplate(ListHeaderTemplate, list);
 
 const createTodoList = list => {
   const listContainer = document.createElement('div');
-  const header = createListHeader(list);
-  const body = createListBody(list);
+  const header = createTodoHeader(list);
+  const body = createTodoBody(list);
   listContainer.id = list.id;
   listContainer.classList.add('list');
   listContainer.innerHTML = header + body;

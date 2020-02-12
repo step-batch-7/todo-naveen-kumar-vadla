@@ -15,17 +15,17 @@ const sendXHR = (method, url, message, callback) => {
 
 const toJSONString = jsonData => JSON.stringify(jsonData);
 
-const createList = () => {
+const createTodo = () => {
   const inputBox = document.querySelector('#title');
   const title = inputBox.value;
   const message = toJSONString({ title });
-  inputBox.value && sendXHR('POST', '/createList', message, showTodoLists);
+  inputBox.value && sendXHR('POST', '/createTodo', message, showTodoLists);
   inputBox.value = '';
 };
 
 const deleteList = (listId) => {
   const message = toJSONString({ listId });
-  sendXHR('POST', '/removeList', message, showTodoLists);
+  sendXHR('POST', '/removeTodo', message, showTodoLists);
 };
 
 const addTask = (listId) => {

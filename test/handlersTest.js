@@ -142,10 +142,10 @@ describe('POST', () => {
         .expect('404 File Not Found', done);
     });
   });
-  describe('/createList', () => {
+  describe('/createTodo', () => {
     it('Should create the new list with given title', done => {
       request(app)
-        .post('/createList')
+        .post('/createTodo')
         .set('Accept', '*/*')
         .send('{ "title":"English" }')
         .expect(200)
@@ -153,10 +153,10 @@ describe('POST', () => {
         .expect('content-Length', '1015', done);
     });
   });
-  describe('/removeList', () => {
+  describe('/removeTodo', () => {
     it('Should remove the list with given id', done => {
       request(app)
-        .post('/removeList')
+        .post('/removeTodo')
         .set('Accept', '*/*')
         .send('{ "listId":"4" }')
         .expect(200)
