@@ -71,7 +71,7 @@ body {
   background: transparent;
   border: none;
   border-bottom: 1px solid #dddddd;
-  width: 90%;
+  width: 88%;
   padding: 1%;
 }
 
@@ -112,10 +112,10 @@ input[type='checkbox'] {
 }
 
 .list {
-  margin: 1%;
+  margin: 1.4%;
   background: rgba(230, 230, 230, 0.455);
   border-radius: 5px;
-  width: 29%;
+  width: 22%;
   border: 1px solid #cccccc;
 }
 
@@ -199,7 +199,7 @@ input[type='checkbox'] {
   background: transparent;
   border: none;
   font-size: 80%;
-  width: 300px;
+  width: 80%;
 }
 
 .work {
