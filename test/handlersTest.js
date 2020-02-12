@@ -143,7 +143,7 @@ describe('POST', () => {
     });
   });
   describe('/createTodo', () => {
-    it('Should create the new list with given title', done => {
+    it('Should create the new todo with given title', done => {
       request(app)
         .post('/createTodo')
         .set('Accept', '*/*')
@@ -154,33 +154,33 @@ describe('POST', () => {
     });
   });
   describe('/removeTodo', () => {
-    it('Should remove the list with given id', done => {
+    it('Should remove the todo with given id', done => {
       request(app)
         .post('/removeTodo')
         .set('Accept', '*/*')
-        .send('{ "listId":"4" }')
+        .send('{ "todoId":"4" }')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '977', done);
     });
   });
   describe('/addTask', () => {
-    it('Should add the given work/task to the given list', done => {
+    it('Should add the given work/task to the given todo', done => {
       request(app)
         .post('/addTask')
         .set('Accept', '*/*')
-        .send('{ "listId":"3", "work":"reading books" }')
+        .send('{ "todoId":"3", "work":"reading books" }')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '1029', done);
     });
   });
   describe('/removeTask', () => {
-    it('Should remove the given work/task form the given list', done => {
+    it('Should remove the given work/task form the given todo', done => {
       request(app)
         .post('/removeTask')
         .set('Accept', '*/*')
-        .send('{ "listId":"3", "taskId":"7" }')
+        .send('{ "todoId":"3", "taskId":"7" }')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '977', done);
@@ -191,7 +191,7 @@ describe('POST', () => {
       request(app)
         .post('/toggleTaskCompletion')
         .set('Accept', '*/*')
-        .send('{ "listId":"3", "taskId":"6" }')
+        .send('{ "todoId":"3", "taskId":"6" }')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '976', done);
@@ -200,29 +200,29 @@ describe('POST', () => {
       request(app)
         .post('/toggleTaskCompletion')
         .set('Accept', '*/*')
-        .send('{ "listId":"3", "taskId":"6" }')
+        .send('{ "todoId":"3", "taskId":"6" }')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '977', done);
     });
   });
   describe('/editTitle', () => {
-    it('Should modify the title of given list with given new title', done => {
+    it('Should modify the title of given todo with given new title', done => {
       request(app)
         .post('/editTitle')
         .set('Accept', '*/*')
-        .send('{ "newTitle":"Naveen", "listId":"3" }')
+        .send('{ "newTitle":"Naveen", "todoId":"3" }')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '971', done);
     });
   });
   describe('/editTask', () => {
-    it('Should modify the task/work of given list with given new task/work', done => {
+    it('Should modify the task/work of given todo with given new task/work', done => {
       request(app)
         .post('/editTask')
         .set('Accept', '*/*')
-        .send('{ "newWork":"reading", "listId":"3", "taskId":"1"}')
+        .send('{ "newWork":"reading", "todoId":"3", "taskId":"1"}')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '968', done);

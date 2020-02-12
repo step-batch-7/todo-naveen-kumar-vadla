@@ -23,57 +23,57 @@ const createTodo = () => {
   inputBox.value = '';
 };
 
-const deleteList = (listId) => {
-  const message = toJSONString({ listId });
+const deleteTodo = (todoId) => {
+  const message = toJSONString({ todoId });
   sendXHR('POST', '/removeTodo', message, showTodoLists);
 };
 
-const addTask = (listId) => {
+const addTask = (todoId) => {
   const textBox = event.target.previousElementSibling;
   const work = textBox.value;
-  const message = toJSONString({ listId, work });
+  const message = toJSONString({ todoId, work });
   textBox.value && sendXHR('POST', '/addTask', message, showTodoLists);
   textBox.value = '';
 };
 
 const removeTask = (taskId) => {
-  const [, , , , list] = event.path;
-  const listId = list.id;
-  const message = toJSONString({ taskId, listId });
+  const [, , , , todo] = event.path;
+  const todoId = todo.id;
+  const message = toJSONString({ taskId, todoId });
   sendXHR('POST', '/removeTask', message, showTodoLists);
 };
 
 const toggleTaskCompletion = (taskId) => {
-  const [, , , , list] = event.path;
-  const listId = list.id;
-  const message = toJSONString({ taskId, listId });
+  const [, , , , todo] = event.path;
+  const todoId = todo.id;
+  const message = toJSONString({ taskId, todoId });
   sendXHR('POST', '/toggleTaskCompletion', message, showTodoLists);
 };
 
-const editTitle = (listId) => {
+const editTitle = (todoId) => {
   const [header] = event.path;
   const newTitle = header.value;
-  const message = toJSONString({ newTitle, listId });
+  const message = toJSONString({ newTitle, todoId });
   sendXHR('POST', '/editTitle', message, showTodoLists);
 };
 
 const editTask = (taskId) => {
-  const [work, , , , list] = event.path;
+  const [work, , , , todo] = event.path;
   const newWork = work.value;
-  const listId = list.id;
-  const message = toJSONString({ newWork, taskId, listId });
+  const todoId = todo.id;
+  const message = toJSONString({ newWork, taskId, todoId });
   sendXHR('POST', '/editTask', message, showTodoLists);
 };
 
 const getElementAndAddFocus = query => document.querySelector(query).focus();
 
-const focusListTitle = (listId) => {
-  const query = `.list[id="${listId}"] .list-title`;
+const focusTodoTitle = (todoId) => {
+  const query = `.list[id="${todoId}"] .list-title`;
   getElementAndAddFocus(query);
 };
 
-const focusListTask = (taskId) => {
-  const [, , , , list] = event.path;
-  const query = `.list[id="${list.id}"] .task-item[id="${taskId}"] .work`;
+const focusTodoTask = (taskId) => {
+  const [, , , , todo] = event.path;
+  const query = `.list[id="${todo.id}"] .task-item[id="${taskId}"] .work`;
   getElementAndAddFocus(query);
 };

@@ -17,9 +17,9 @@ const ListHeaderTemplate = `
     value="__title__">
   <div class="options"> 
     <img src="images/edit.svg" class="editImage" 
-      onclick="focusListTitle(__id__)"> 
+      onclick="focusTodoTitle(__id__)"> 
     <img src="images/delete.svg" class="deleteImage" 
-      onclick="deleteList(__id__)">
+      onclick="deleteTodo(__id__)">
   </div>
 </div>`;
 
@@ -40,7 +40,7 @@ const taskTemplate = `
   </p>
   <div class="options">
     <img src="images/editTask.svg" class="editTaskImage" 
-      onclick="focusListTask(__id__)"> 
+      onclick="focusTodoTask(__id__)"> 
     <img src="images/remove.svg" class="removeImage" 
       onclick="removeTask(__id__)">
   </div>
