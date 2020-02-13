@@ -68,12 +68,12 @@ const editTask = (taskId) => {
 const getElementAndAddFocus = query => document.querySelector(query).focus();
 
 const focusTodoTitle = (todoId) => {
-  const query = `.list[id="${todoId}"] .list-title`;
+  const query = `.todo[id="${todoId}"] .todo-title`;
   getElementAndAddFocus(query);
 };
 
 const focusTodoTask = (taskId) => {
   const [, , , , todo] = event.path;
-  const query = `.list[id="${todo.id}"] .task-item[id="${taskId}"] .work`;
+  const query = `.todo[id="${todo.id}"] .task-item[id="${taskId}"] .work`;
   getElementAndAddFocus(query);
 };

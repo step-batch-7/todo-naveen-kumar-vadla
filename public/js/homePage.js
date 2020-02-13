@@ -10,9 +10,9 @@ const fillTemplate = (template, propertyBag) => {
   return html;
 };
 
-const ListHeaderTemplate = `
-<div class="list-header">
-  <input class="list-title" onfocusout="editTitle(__id__)"
+const TodoHeaderTemplate = `
+<div class="todo-header">
+  <input class="todo-title" onfocusout="editTitle(__id__)"
     onfocus="this.selectionStart = this.selectionEnd = this.value.length;"
     value="__title__">
   <div class="options"> 
@@ -58,23 +58,23 @@ const generateTasksHtml = (allTasksHtml, task) => {
   return allTasksHtml + taskHtml;
 };
 
-const createTodoBody = list => {
-  const addTaskBar = fillTemplate(addTaskBarTemplate, list);
-  const taskshtml = list.tasks.reduce(generateTasksHtml, '');
+const createTodoBody = todo => {
+  const addTaskBar = fillTemplate(addTaskBarTemplate, todo);
+  const taskshtml = todo.tasks.reduce(generateTasksHtml, '');
   const tasksContainer = `<div class="tasks">${taskshtml}</div>`;
   return addTaskBar + tasksContainer;
 };
 
-const createTodoHeader = list => fillTemplate(ListHeaderTemplate, list);
+const createTodoHeader = todo => fillTemplate(TodoHeaderTemplate, todo);
 
-const createTodoList = list => {
-  const listContainer = document.createElement('div');
-  const header = createTodoHeader(list);
-  const body = createTodoBody(list);
-  listContainer.id = list.id;
-  listContainer.classList.add('list');
-  listContainer.innerHTML = header + body;
-  return listContainer;
+const createTodoList = todo => {
+  const todoContainer = document.createElement('div');
+  const header = createTodoHeader(todo);
+  const body = createTodoBody(todo);
+  todoContainer.id = todo.id;
+  todoContainer.classList.add('todo');
+  todoContainer.innerHTML = header + body;
+  return todoContainer;
 };
 
 const showTodoLists = text => {
