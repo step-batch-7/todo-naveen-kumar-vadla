@@ -3,7 +3,7 @@
 const { Server } = require('http');
 const fs = require('fs');
 
-const app = require('./lib/handlers');
+const app = require('./lib/routes');
 
 const defaultPort = 7000;
 
