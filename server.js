@@ -5,6 +5,7 @@ const fs = require('fs');
 const app = require('./lib/routes');
 
 const defaultPort = 7000;
+const port = process.env.PORT || defaultPort;
 
 const setUpDataBase = function() {
   const DATA_PATH = `${__dirname}/data`;
@@ -13,11 +14,9 @@ const setUpDataBase = function() {
   }
 };
 
-const main = (port = defaultPort) => {
+const main = port => {
   setUpDataBase();
   app.listen(port, () => process.stderr.write(`started listening: ${port}`));
 };
-
-const [, , port] = process.argv;
 
 main(port);
