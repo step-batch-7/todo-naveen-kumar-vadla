@@ -20,7 +20,7 @@ describe('GET', () => {
         .get('/')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'text/html')
+        .expect('Content-Type', /html/)
         .expect('content-Length', '887')
         .expect(/<title>TODO<\/title>/, done);
     });
@@ -29,7 +29,7 @@ describe('GET', () => {
         .get('/css/homePage.css')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'text/css')
+        .expect('Content-Type', /css/)
         .expect(/body {/, done);
     });
     it('should get the path /js/homePage.js', done => {
@@ -37,7 +37,7 @@ describe('GET', () => {
         .get('/js/homePage.js')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'application/javascript')
+        .expect('Content-Type', /javascript/)
         .expect(/'use strict'/, done);
     });
     it('should get the path /js/eventHandlers.js', done => {
@@ -45,7 +45,7 @@ describe('GET', () => {
         .get('/js/eventHandlers.js')
         .set('Accept', '*/*')
         .expect(200)
-        .expect('Content-Type', 'application/javascript')
+        .expect('Content-Type', /javascript/)
         .expect(/'use strict'/, done);
     });
     it('should get the path /images/create.svg', done => {
@@ -115,9 +115,9 @@ describe('GET', () => {
         .get('/badFile')
         .set('Accept', '*/*')
         .expect(404)
-        .expect('Content-Type', 'text/plain')
-        .expect('Content-Length', '18')
-        .expect('404 File Not Found', done);
+        .expect('Content-Type', /html/)
+        .expect('Content-Length', '146')
+        .expect(/\/badFile/, done);
     });
   });
 });
@@ -136,9 +136,9 @@ describe('POST', () => {
         .set('Accept', '*/*')
         .send('{ "name":"raja", "comment":"wonderful+site" }')
         .expect(404)
-        .expect('Content-Type', 'text/plain')
-        .expect('Content-Length', '18')
-        .expect('404 File Not Found', done);
+        .expect('Content-Type', /html/)
+        .expect('Content-Length', '147')
+        .expect(/\/badFile/, done);
     });
   });
   describe('/createTodo', () => {
@@ -149,7 +149,7 @@ describe('POST', () => {
         .send('{ "title":"English" }')
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '1015', done);
+        .expect('content-Length', '997', done);
     });
   });
   describe('/removeTodo', () => {
@@ -160,7 +160,7 @@ describe('POST', () => {
         .send('{ "todoId":"4" }')
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '977', done);
+        .expect('content-Length', '559', done);
     });
   });
   describe('/addTask', () => {
@@ -168,10 +168,11 @@ describe('POST', () => {
       request(app)
         .post('/addTask')
         .set('Accept', '*/*')
+        .set('Content-Type', 'application/json')
         .send('{ "todoId":"3", "work":"reading books" }')
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '1029', done);
+        .expect('content-Length', '611', done);
     });
   });
   describe('/removeTask', () => {
@@ -179,10 +180,11 @@ describe('POST', () => {
       request(app)
         .post('/removeTask')
         .set('Accept', '*/*')
+        .set('Content-Type', 'application/json')
         .send('{ "todoId":"3", "taskId":"7" }')
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '977', done);
+        .expect('content-Length', '559', done);
     });
   });
   describe('/toggleTaskCompletion', () => {
@@ -190,19 +192,21 @@ describe('POST', () => {
       request(app)
         .post('/toggleTaskCompletion')
         .set('Accept', '*/*')
+        .set('Content-Type', 'application/json')
         .send('{ "todoId":"3", "taskId":"6" }')
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '976', done);
+        .expect('content-Length', '558', done);
     });
     it('Should make toggle the isCompletion of given work/task from true to false', done => {
       request(app)
         .post('/toggleTaskCompletion')
         .set('Accept', '*/*')
+        .set('Content-Type', 'application/json')
         .send('{ "todoId":"3", "taskId":"6" }')
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '977', done);
+        .expect('content-Length', '559', done);
     });
   });
   describe('/editTitle', () => {
@@ -210,10 +214,11 @@ describe('POST', () => {
       request(app)
         .post('/editTitle')
         .set('Accept', '*/*')
+        .set('Content-Type', 'application/json')
         .send('{ "newTitle":"Naveen", "todoId":"3" }')
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '971', done);
+        .expect('content-Length', '553', done);
     });
   });
   describe('/editTask', () => {
@@ -221,10 +226,11 @@ describe('POST', () => {
       request(app)
         .post('/editTask')
         .set('Accept', '*/*')
+        .set('Content-Type', 'application/json')
         .send('{ "newWork":"reading", "todoId":"3", "taskId":"1"}')
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '968', done);
+        .expect('content-Length', '550', done);
     });
   });
 });
@@ -234,18 +240,18 @@ describe('METHOD NOT ALLOWED', () => {
     request(app)
       .put('/')
       .set('Accept', '*/*')
-      .expect(400)
-      .expect('Content-Type', 'text/plain')
-      .expect('Content-Length', '22')
-      .expect('400 Method Not Allowed', done);
+      .expect(404)
+      .expect('Content-Type', /html/)
+      .expect('Content-Length', '139')
+      .expect(/Cannot PUT/, done);
   });
   it('Should should give method not allowed for delete method ', done => {
     request(app)
       .delete('/')
       .set('Accept', '*/*')
-      .expect(400)
-      .expect('Content-Type', 'text/plain')
-      .expect('Content-Length', '22')
-      .expect('400 Method Not Allowed', done);
+      .expect(404)
+      .expect('Content-Type', /html/)
+      .expect('Content-Length', '142')
+      .expect(/Cannot DELETE/, done);
   });
 });
