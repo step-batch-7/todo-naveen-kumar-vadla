@@ -42,13 +42,15 @@ const taskTemplate = `
 
 const generateTasksHtml = (allTasksHtml, task) => {
   const { id, work, isCompleted } = task;
+  const workString = work.replace(/</g, '&lt;').replace(/>/g, '&gt;');
   let className = 'work';
   let checked = '';
   if (isCompleted) {
     className = 'work completedTask';
     checked = 'checked';
   }
-  const taskHtml = fillTemplate(taskTemplate, { id, work, className, checked });
+  const data = { id, work: workString, className, checked };
+  const taskHtml = fillTemplate(taskTemplate, data);
   return allTasksHtml + taskHtml;
 };
 
@@ -59,7 +61,10 @@ const createTodoBody = todo => {
   return addTaskBar + tasksContainer;
 };
 
-const createTodoHeader = todo => fillTemplate(TodoHeaderTemplate, todo);
+const createTodoHeader = todo => {
+  todo.title = todo.title.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return fillTemplate(TodoHeaderTemplate, todo);
+};
 
 const createTodoList = todo => {
   const todoContainer = document.createElement('div');
