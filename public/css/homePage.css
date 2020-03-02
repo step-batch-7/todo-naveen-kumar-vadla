@@ -127,6 +127,7 @@ input[type='checkbox'] {
 .todo-title {
   margin: 0% 0% 1% 0%;
   font-weight: 700;
+  font-size: small;
 }
 
 .todo-header {
@@ -152,6 +153,7 @@ input[type='checkbox'] {
 
 .work {
   font-weight: 500;
+  margin-top: 1.5%;
 }
 
 .completedTask {

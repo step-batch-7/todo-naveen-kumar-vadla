@@ -55,14 +55,14 @@ const toggleTaskCompletion = taskId => {
 
 const editTitle = todoId => {
   const [header] = event.path;
-  const newTitle = header.value;
+  const newTitle = header.innerText;
   const message = toJSONString({ newTitle, todoId });
   sendXHR('POST', '/editTitle', message, showTodoLists);
 };
 
 const editTask = taskId => {
-  const [work, , , , todo] = event.path;
-  const newWork = work.value;
+  const [work, , , todo] = event.path;
+  const newWork = work.innerText;
   const todoId = todo.id;
   const message = toJSONString({ newWork, taskId, todoId });
   sendXHR('POST', '/editTask', message, showTodoLists);

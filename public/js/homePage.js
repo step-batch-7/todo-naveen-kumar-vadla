@@ -12,9 +12,8 @@ const fillTemplate = (template, propertyBag) => {
 
 const TodoHeaderTemplate = `
 <div class="todo-header">
-  <input class="todo-title" onfocusout="editTitle(__id__)"
-    onfocus="this.selectionStart = this.selectionEnd = this.value.length;"
-    value="__title__">
+  <h4 class="todo-title" onfocusout="editTitle(__id__)"
+    contenteditable>__title__</h4>
   <div class="options"> 
     <img src="images/edit.svg" class="editImage" 
       onclick="focusTodoTitle(__id__)"> 
@@ -34,9 +33,8 @@ const taskTemplate = `
 <div id="__id__" class="task-item">
   <p>
   <input type="checkbox" onclick="toggleTaskCompletion(__id__)" __checked__>
-  <input class="__className__" onfocusout="editTask(__id__)"
-    onfocus="this.selectionStart = this.selectionEnd = this.value.length;"
-    value="__work__">
+  <h6 class="__className__" onfocusout="editTask(__id__)" 
+    contenteditable>__work__</h6>
   </p>
     <img src="images/remove.svg" class="removeImage" 
       onclick="removeTask(__id__)">
