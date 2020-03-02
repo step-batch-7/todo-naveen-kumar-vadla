@@ -6,8 +6,14 @@ body {
   font-family: sans-serif;
 }
 
+::placeholder {
+  font-style: italic;
+  color: #b0b0b0;
+  font-family: font-awesome;
+}
+
 .svg {
-  height: 1.6vh;
+  height: 2vh;
 }
 
 .container {
@@ -34,7 +40,7 @@ body {
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
-  padding: 1%;  
+  padding: 1%;
 }
 
 .main-heading,
@@ -62,7 +68,6 @@ body {
 
 .createButton {
   background-color: rgba(135, 206, 250, 0.397);
-  margin: 0% 0% 0% 0.1%;
 }
 
 .addTask {
@@ -79,26 +84,17 @@ body {
 }
 
 .addButton {
-  height: 1.6vh;
-  margin-left: 2.5%;
+  height: 1.5vh;
 }
 
-#title::placeholder,
-.addTask::placeholder {
-  font-style: italic;
-  color: #b0b0b0;
-}
-
-.deleteImage,
-.tickImage {
+.deleteImage {
   background-color: transparent;
   border: none;
-  height: 2.5vh;
+  height: 2vh;
 }
 
 .editImage {
-  height: 3vh;
-  margin-bottom: -3px;
+  height: 2.3vh;
 }
 
 .removeImage {
@@ -180,7 +176,7 @@ input[type='checkbox'] {
   outline: none;
   background: transparent;
   border: none;
-  width: 60%;
+  width: 80%;
 }
 
 .options {
