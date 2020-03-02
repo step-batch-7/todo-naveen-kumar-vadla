@@ -12,7 +12,7 @@ const fillTemplate = (template, propertyBag) => {
 
 const TodoHeaderTemplate = `
 <div class="todo-header">
-  <h4 class="todo-title" onfocusout="editTitle(__id__)"
+  <h4 class="todo-title" onfocusout="editTitle(__id__,this.innerText)"
     contenteditable>__title__</h4>
   <div class="options"> 
     <img src="images/edit.svg" class="editImage" 
@@ -33,7 +33,7 @@ const taskTemplate = `
 <div id="__id__" class="task-item">
   <p>
   <input type="checkbox" onclick="toggleTaskCompletion(__id__)" __checked__>
-  <h6 class="__className__" onfocusout="editTask(__id__)" 
+  <h6 class="__className__" onfocusout="editTask(__id__,this.innerText)" 
     contenteditable>__work__</h6>
   </p>
     <img src="images/remove.svg" class="removeImage" 
