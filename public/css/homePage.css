@@ -116,7 +116,7 @@ input[type='checkbox'] {
   margin: 1%;
   background: rgba(230, 230, 230, 0.455);
   border-radius: 5px;
-  width: 25vw;
+  width: 20vw;
   border: 1px solid #cccccc;
 }
 
@@ -143,7 +143,6 @@ input[type='checkbox'] {
 .task-item {
   display: flex;
   justify-content: space-between;
-  height: 3vh;
 }
 
 .task-item p {
@@ -153,7 +152,7 @@ input[type='checkbox'] {
 
 .work {
   font-weight: 500;
-  margin-top: 1.5%;
+  margin: 1.5% 0% 0% 0%;
 }
 
 .completedTask {
