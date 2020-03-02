@@ -40,7 +40,7 @@ const addTask = todoId => {
 };
 
 const removeTask = taskId => {
-  const [, , , , todo] = event.path;
+  const [, , , todo] = event.path;
   const todoId = todo.id;
   const message = toJSONString({ taskId, todoId });
   sendXHR('POST', '/removeTask', message, showTodoLists);
@@ -72,11 +72,5 @@ const getElementAndAddFocus = query => document.querySelector(query).focus();
 
 const focusTodoTitle = todoId => {
   const query = `.todo[id="${todoId}"] .todo-title`;
-  getElementAndAddFocus(query);
-};
-
-const focusTodoTask = taskId => {
-  const [, , , , todo] = event.path;
-  const query = `.todo[id="${todo.id}"] .task-item[id="${taskId}"] .work`;
   getElementAndAddFocus(query);
 };

@@ -38,12 +38,8 @@ const taskTemplate = `
     onfocus="this.selectionStart = this.selectionEnd = this.value.length;"
     value="__work__">
   </p>
-  <div class="options">
-    <img src="images/editTask.svg" class="editTaskImage" 
-      onclick="focusTodoTask(__id__)"> 
     <img src="images/remove.svg" class="removeImage" 
       onclick="removeTask(__id__)">
-  </div>
 </div>`;
 
 const generateTasksHtml = (allTasksHtml, task) => {

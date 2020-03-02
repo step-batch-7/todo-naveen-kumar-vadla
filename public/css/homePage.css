@@ -101,18 +101,10 @@ body {
   margin-bottom: -3px;
 }
 
-.removeImage,
-.editTaskImage {
-  display: inline;
-}
-
 .removeImage {
   opacity: 0.5;
-}
-
-.removeImage,
-.editTaskImage {
-  height: 2.5vh;
+  height: 1.5vh;
+  margin-top: 5px;
 }
 
 .createButton,
@@ -120,7 +112,6 @@ body {
 .deleteImage,
 .removeImage,
 .editImage,
-.editTaskImage,
 input[type='checkbox'] {
   cursor: pointer;
 }
