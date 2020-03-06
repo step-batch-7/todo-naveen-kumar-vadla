@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +10,15 @@
     <script src="./js/homePage.js"></script>
     <script src="./js/eventHandlers.js"></script>
   </head>
+
   <body>
     <div class="header">
       <h1 class="main-heading">TODO</h1>
       <div class="searchBar">
-        <input type="search" name="searchByTitle" id="searchByTitle" placeholder="searchByTitle">
-        <input type="search" name="searchByTask" id="searchByTask" placeholder="searchByTask">
+        <input type="search" name="searchByTitle" id="searchByTitle" placeholder="searchByTitle"
+          oninput="search(value,'searchByTitle')" onfocus="getTodos()">
+        <input type="search" name="searchByTask" id="searchByTask" placeholder="searchByTask"
+          oninput="search(value,'searchByTask')" onfocus="getTodos()">
       </div>
     </div>
     <div class="container">
@@ -28,4 +32,5 @@
       <div id="todo-lists"></div>
     </div>
   </body>
+
 </html>

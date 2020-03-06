@@ -65,9 +65,22 @@ const editTask = (taskId, newWork) => {
   sendXHR('POST', '/editTask', message, showTodoLists);
 };
 
-const getElementAndAddFocus = query => document.querySelector(query).focus();
-
 const focusTodoTitle = todoId => {
   const query = `.todo[id="${todoId}"] .todo-title`;
-  getElementAndAddFocus(query);
+  document.querySelector(query).focus();
+};
+
+let allTodos = [];
+const getTodos = () =>
+  sendXHR('GET', '/tasks', '', text => (allTodos = JSON.parse(text)));
+
+const searchByTitle = (todo, searchTitle) => todo.title.includes(searchTitle);
+const searchByTask = (todo, searchTask) =>
+  todo.tasks.some(task => task.work.includes(searchTask));
+
+const search = (searchString, searchType) => {
+  const searchMethods = { searchByTitle, searchByTask };
+  const filterer = searchMethods[searchType];
+  const matchingTodos = allTodos.filter(todo => filterer(todo, searchString));
+  showTodoLists(JSON.stringify(matchingTodos));
 };
