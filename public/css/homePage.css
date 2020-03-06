@@ -10,10 +10,16 @@ body {
   font-style: italic;
   color: #b0b0b0;
   font-family: font-awesome;
+  font-size: 1.5vh;
 }
 
 .svg {
   height: 2vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
 }
 
 .container {
@@ -23,8 +29,8 @@ body {
 }
 
 .main-heading {
-  text-align: center;
-  padding: 0.5%;
+  font-weight: 200;
+  margin: 0.5%;
 }
 
 #container-header {
@@ -43,7 +49,7 @@ body {
   padding: 1%;
 }
 
-.main-heading,
+.header,
 .container {
   margin: 1%;
 }
@@ -70,10 +76,35 @@ body {
   background-color: rgba(135, 206, 250, 0.397);
 }
 
+.searchBar {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0%;
+}
+
+#searchByTask::placeholder,
+#searchByTitle::placeholder {
+  background: url('../images/search.svg');
+  background-repeat: no-repeat;
+  text-indent: 20%;
+}
+
+#searchByTask,
+#searchByTitle {
+  padding: 0%;
+  outline: none;
+  height: 3vh;
+}
+
+#searchByTask,
+#searchByTitle,
 .addTask {
   background: transparent;
   border: none;
   border-bottom: 1px solid #dddddd;
+}
+
+.addTask {
   width: 80%;
   padding: 1%;
 }
