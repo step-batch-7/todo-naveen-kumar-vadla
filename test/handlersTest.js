@@ -21,7 +21,7 @@ describe('GET', () => {
         .set('Accept', '*/*')
         .expect(200)
         .expect('Content-Type', /html/)
-        .expect(/<title>TODO<\/title>/, done);
+        .expect(/<title>Todo<\/title>/, done);
     });
     it('should get the path /css/homePage.css', done => {
       request(app)
