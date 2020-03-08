@@ -5,31 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TODO</title>
-    <link rel="stylesheet" href="/css/homePage.css">
-    <script src="./js/homePage.js"></script>
-    <script src="./js/eventHandlers.js"></script>
+    <title>Todo</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/index.js"></script>
   </head>
 
   <body>
-    <div class="header">
-      <h1 class="main-heading">TODO</h1>
-      <div class="searchBar">
-        <input type="search" name="searchByTitle" id="searchByTitle" placeholder="searchByTitle"
-          oninput="search(value,'searchByTitle')" onfocus="getTodos()">
-        <input type="search" name="searchByTask" id="searchByTask" placeholder="searchByTask"
-          oninput="search(value,'searchByTask')" onfocus="getTodos()">
-      </div>
-    </div>
     <div class="container">
-      <div id="container-header">
-        <h3 class="todo-adder">Create A New Todo List</h3>
-        <div id="addTitleBar">
-          <input type="text" name="title" id="title" placeholder="Enter your Todo List title here">
-          <button class="createButton" onclick="createTodo()"><img src="images/create.svg" class="svg"></button>
+      <div class="form">
+        <div class="signInSection">
+          <h1 class="header">Sign In</h1>
+          <form action="homePage.html">
+            <div class="form-field">
+              <label for="userName">UserName</label>
+              <input id="userName" name="userName" type="text" placeholder="UserName" autocomplete="off" required />
+            </div>
+            <div class="form-field">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" placeholder="Password" autocomplete="off" required />
+            </div>
+            <div class="checkbox-field">
+              <input id="showPassword" type="checkbox" class="checkbox" onclick="displayPassword()" />
+              <label for="showPassword">Show Password</label>
+            </div>
+            <div class="form-field">
+              <input type="submit" class="button" value="Sign In" />
+            </div>
+            <div class="createAccount">
+              <p>Don't have any account?</p>
+              <p onclick="showSignUp()" id="createAccount">create an account</p>
+            </div>
+          </form>
+        </div>
+        <div class="signUpSection hidden">
+          <h1 class="header">Sign Up</h1>
+          <form action="homePage.html">
+            <div class="form-field">
+              <label for="fullName">FullName</label>
+              <input id="fullName" name="fullName" type="text" placeholder="FullName" autocomplete="off" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" name="mail" type="email" placeholder="Email" autocomplete="off" required />
+            </div>
+            <div class="form-field">
+              <label for="userName">UserName</label>
+              <input id="signUpUserName" name="userName" type="text" placeholder="UserName" autocomplete="off" required />
+            </div>
+            <div class="form-field">
+              <label for="password">Password</label>
+              <input id="SignUpPassword" name="password" type="password" placeholder="Password" autocomplete="off" required />
+            </div>
+            <div class="form-field">
+              <input type="submit" class="button" value="Sign Up" />
+            </div>
+            <div class="createAccount">
+              <p>Already have an account?</p>
+              <p><a href="/" id="signIn">Login to your account</a></p>
+            </div>
+          </form>
         </div>
       </div>
-      <div id="todo-lists"></div>
     </div>
   </body>
 

@@ -1,0 +1,99 @@
+body {
+  background: #aeb6b8;
+  font-family: sans-serif;
+  color: #151515;
+}
+
+label {
+  color: black;
+  font-weight: 600;
+  font-size: 0.85em;
+}
+input:focus {
+  outline: none;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.form {
+  display: flex;
+  width: auto;
+  background: #3b4446;
+  margin: 1%;
+  padding: 2%;
+  border-radius: 10px;
+}
+.signInSection,
+.signUpSection {
+  padding: 30px;
+}
+.header {
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+  margin: 0%;
+  color: #aeb6b8;
+}
+.form-field {
+  display: block;
+  width: 300px;
+  margin: 10px auto;
+}
+.form-field label {
+  display: block;
+  margin-bottom: 10px;
+}
+.form-field input[type='password'],
+input[type='email'],
+input[type='text'] {
+  width: 90%;
+  padding: 4%;
+  border-radius: 10px;
+  border: 1px solid #2c2c2c;
+  background: transparent;
+  color: #aeb6b8;
+  font-size: 1.5vh;
+}
+.form-field input::placeholder {
+  color: #898989;
+  font-style: italic;
+  font-family: FontAwesome;
+}
+.form-field input:focus {
+  border: 1px solid #e8e8e8;
+}
+.button {
+  padding: 15px;
+  font-size: 1em;
+  width: 100%;
+  border-radius: 25px;
+  border: 1px solid #151515;
+  margin: 20px 0px;
+  cursor: pointer;
+  background: #aeb6b874;
+  color: #fff;
+}
+.createAccount {
+  display: flex;
+}
+.createAccount p {
+  color: #9c9c9c;
+}
+#createAccount {
+  border-bottom: 1px solid #aeb6b8;
+}
+#createAccount,
+#signIn {
+  color: #e3e3e3;
+  cursor: pointer;
+  margin-left: 10px;
+}
+label {
+  color: #b2b2b2;
+}
+.hidden {
+  display: none;
+}

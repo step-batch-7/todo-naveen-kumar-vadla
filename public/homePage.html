@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo</title>
+    <link rel="stylesheet" href="/css/homePage.css">
+    <script src="./js/homePage.js"></script>
+    <script src="./js/eventHandlers.js"></script>
+  </head>
+
+  <body>
+    <div class="header">
+      <h1 class="main-heading">TODO</h1>
+      <div class="searchBar">
+        <input type="search" name="searchByTitle" id="searchByTitle" placeholder="searchByTitle"
+          oninput="search(value,'searchByTitle')" onfocus="getTodos()">
+        <input type="search" name="searchByTask" id="searchByTask" placeholder="searchByTask"
+          oninput="search(value,'searchByTask')" onfocus="getTodos()">
+      </div>
+    </div>
+    <div class="container">
+      <div id="container-header">
+        <h3 class="todo-adder">Create A New Todo List</h3>
+        <div id="addTitleBar">
+          <input type="text" name="title" id="title" placeholder="Enter your Todo List title here">
+          <button class="createButton" onclick="createTodo()"><img src="images/create.svg" class="svg"></button>
+        </div>
+      </div>
+      <div id="todo-lists"></div>
+    </div>
+  </body>
+
+</html>
