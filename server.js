@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-const app = require('./lib/routes');
+const app = require('./lib/app');
 
 const defaultPort = 7000;
 const port = process.env.PORT || defaultPort;

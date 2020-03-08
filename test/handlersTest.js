@@ -3,7 +3,7 @@ const request = require('supertest');
 const fs = require('fs');
 const sinon = require('sinon');
 
-const app = require('../lib/routes');
+const app = require('../lib/app');
 
 describe('GET', () => {
   beforeEach(() => {
