@@ -23,7 +23,7 @@ body {
 }
 
 .container {
-  background: rgba(245, 245, 245, 0.831);
+  background: rgba(245, 245, 245, 0.8);
   border: 1px solid #aaaaaa;
   border-radius: 5px;
 }
@@ -73,7 +73,7 @@ body {
 }
 
 .createButton {
-  background-color: rgba(135, 206, 250, 0.397);
+  background-color: rgba(135, 206, 250, 0.4);
 }
 
 .searchBar {
