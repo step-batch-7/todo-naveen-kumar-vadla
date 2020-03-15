@@ -5,6 +5,24 @@ const sinon = require('sinon');
 
 const app = require('../lib/app');
 
+describe('HomePage', () => {
+  describe('/signUp', () => {
+    it('Should signUp the given user with given data', done => {
+      const userData = {
+        fullName: 'naveen',
+        mail: 'naveen@naveen.naveen',
+        userName: 'naveen',
+        password: 'naveen'
+      };
+      request(app)
+        .post('/signUp')
+        .set('Accept', '*/*')
+        .send(userData)
+        .expect(302)
+        .expect('Location', '/', done);
+    });
+  });
+});
 describe('GET', () => {
   beforeEach(() => {
     sinon.replace(fs, 'writeFileSync', () => {});
@@ -102,6 +120,7 @@ describe('GET', () => {
       request(app)
         .get('/tasks')
         .set('Accept', '*/*')
+        .set('Cookie', 'sessionId=1')
         .expect(200)
         .expect('content-Type', 'application/json')
         .expect('content-Length', '977', done);
@@ -145,6 +164,7 @@ describe('POST', () => {
       request(app)
         .post('/createTodo')
         .set('Accept', '*/*')
+        .set('Cookie', 'sessionId=1')
         .send('{ "title":"English" }')
         .expect(200)
         .expect('content-Type', 'application/json')
@@ -156,6 +176,7 @@ describe('POST', () => {
       request(app)
         .post('/removeTodo')
         .set('Accept', '*/*')
+        .set('Cookie', 'sessionId=1')
         .send('{ "todoId":"4" }')
         .expect(200)
         .expect('content-Type', 'application/json')
@@ -168,6 +189,7 @@ describe('POST', () => {
         .post('/addTask')
         .set('Accept', '*/*')
         .set('Content-Type', 'application/json')
+        .set('Cookie', 'sessionId=1')
         .send('{ "todoId":"3", "work":"reading books" }')
         .expect(200)
         .expect('content-Type', 'application/json')
@@ -180,6 +202,7 @@ describe('POST', () => {
         .post('/removeTask')
         .set('Accept', '*/*')
         .set('Content-Type', 'application/json')
+        .set('Cookie', 'sessionId=1')
         .send('{ "todoId":"3", "taskId":"7" }')
         .expect(200)
         .expect('content-Type', 'application/json')
@@ -192,6 +215,7 @@ describe('POST', () => {
         .post('/toggleTaskCompletion')
         .set('Accept', '*/*')
         .set('Content-Type', 'application/json')
+        .set('Cookie', 'sessionId=1')
         .send('{ "todoId":"3", "taskId":"6" }')
         .expect(200)
         .expect('content-Type', 'application/json')
@@ -202,6 +226,7 @@ describe('POST', () => {
         .post('/toggleTaskCompletion')
         .set('Accept', '*/*')
         .set('Content-Type', 'application/json')
+        .set('Cookie', 'sessionId=1')
         .send('{ "todoId":"3", "taskId":"6" }')
         .expect(200)
         .expect('content-Type', 'application/json')
@@ -214,6 +239,7 @@ describe('POST', () => {
         .post('/editTitle')
         .set('Accept', '*/*')
         .set('Content-Type', 'application/json')
+        .set('Cookie', 'sessionId=1')
         .send('{ "newTitle":"Naveen", "todoId":"3" }')
         .expect(200)
         .expect('content-Type', 'application/json')
@@ -226,6 +252,7 @@ describe('POST', () => {
         .post('/editTask')
         .set('Accept', '*/*')
         .set('Content-Type', 'application/json')
+        .set('Cookie', 'sessionId=1')
         .send('{ "newWork":"reading", "todoId":"3", "taskId":"1"}')
         .expect(200)
         .expect('content-Type', 'application/json')
@@ -233,7 +260,6 @@ describe('POST', () => {
     });
   });
 });
-
 describe('METHOD NOT ALLOWED', () => {
   it('Should should give method not allowed for put method ', done => {
     request(app)
