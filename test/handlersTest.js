@@ -5,22 +5,20 @@ const sinon = require('sinon');
 
 const app = require('../lib/app');
 
-describe('HomePage', () => {
-  describe('/signUp', () => {
-    it('Should signUp the given user with given data', done => {
-      const userData = {
-        fullName: 'naveen',
-        mail: 'naveen@naveen.naveen',
-        userName: 'naveen',
-        password: 'naveen'
-      };
-      request(app)
-        .post('/signUp')
-        .set('Accept', '*/*')
-        .send(userData)
-        .expect(302)
-        .expect('Location', '/', done);
-    });
+describe('/signUp', () => {
+  it('Should signUp the given user with given data', done => {
+    const userData = {
+      fullName: 'naveen',
+      mail: 'naveen@naveen.naveen',
+      userName: 'naveenKumar',
+      password: 'naveen'
+    };
+    request(app)
+      .post('/signUp')
+      .set('Accept', '*/*')
+      .send(userData)
+      .expect(302)
+      .expect('Location', '/', done);
   });
 });
 describe('GET', () => {
