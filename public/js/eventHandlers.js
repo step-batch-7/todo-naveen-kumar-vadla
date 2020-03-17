@@ -71,10 +71,16 @@ const focusTodoTitle = todoId => {
 };
 
 let allTodos = [];
-const getTodos = () => sendXHR('GET', '/tasks', '', text => allTodos = JSON.parse(text));
+const getTodos = () =>
+  sendXHR('GET', '/tasks', '', text => (allTodos = JSON.parse(text)));
 
 const searchByTitle = (todo, searchTitle) => todo.title.includes(searchTitle);
-const searchByTask = (todo, searchTask) => todo.tasks.some(task => task.work.includes(searchTask));
+const searchByTask = (todo, searchTask) => {
+  if (todo.tasks.length) {
+    return todo.tasks.some(task => task.work.includes(searchTask));
+  }
+  return true;
+};
 
 const search = (searchString, searchType) => {
   const searchMethods = { searchByTitle, searchByTask };
