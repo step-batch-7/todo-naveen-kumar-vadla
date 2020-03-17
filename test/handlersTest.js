@@ -13,6 +13,17 @@ describe('GET', () => {
     sinon.restore();
   });
 
+  describe('FILE NOT FOUND', () => {
+    it('Should give file not found if file not exist', done => {
+      request(app)
+        .get('/badFile')
+        .set('Accept', '*/*')
+        .expect(404)
+        .expect('Content-Type', /html/)
+        .expect('Content-Length', '146')
+        .expect(/\/badFile/, done);
+    });
+  });
   describe('Home Page', () => {
     it('should get the path / or index.html', done => {
       request(app)
@@ -106,15 +117,14 @@ describe('GET', () => {
         .expect('content-Length', '977', done);
     });
   });
-  describe('FILE NOT FOUND', () => {
-    it('Should give file not found if file not exist', done => {
+  describe('/logout', () => {
+    it('Should logout the given user and redirect to /', done => {
       request(app)
-        .get('/badFile')
+        .get('/logout')
         .set('Accept', '*/*')
-        .expect(404)
-        .expect('Content-Type', /html/)
-        .expect('Content-Length', '146')
-        .expect(/\/badFile/, done);
+        .set('set-Cookie', '1')
+        .expect(302)
+        .expect('Location', '/', done);
     });
   });
 });
@@ -122,9 +132,21 @@ describe('POST', () => {
   beforeEach(() => {
     sinon.replace(fs, 'writeFileSync', () => {});
   });
-
   afterEach(() => {
     sinon.restore();
+  });
+
+  describe('FILE NOT FOUND', () => {
+    it('Should give file not found if file not exist', done => {
+      request(app)
+        .post('/badFile')
+        .set('Accept', '*/*')
+        .send('{ "name":"raja", "comment":"wonderful+site" }')
+        .expect(404)
+        .expect('Content-Type', /html/)
+        .expect('Content-Length', '147')
+        .expect(/\/badFile/, done);
+    });
   });
   describe('TodoPage', () => {
     describe('/createTodo', () => {
@@ -277,18 +299,6 @@ describe('POST', () => {
         .send(userData)
         .expect(302)
         .expect('Location', '/', done);
-    });
-  });
-  describe('FILE NOT FOUND', () => {
-    it('Should give file not found if file not exist', done => {
-      request(app)
-        .post('/badFile')
-        .set('Accept', '*/*')
-        .send('{ "name":"raja", "comment":"wonderful+site" }')
-        .expect(404)
-        .expect('Content-Type', /html/)
-        .expect('Content-Length', '147')
-        .expect(/\/badFile/, done);
     });
   });
 });
