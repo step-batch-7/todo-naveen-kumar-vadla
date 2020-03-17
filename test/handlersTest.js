@@ -163,10 +163,10 @@ describe('POST', () => {
         .post('/createTodo')
         .set('Accept', '*/*')
         .set('Cookie', 'sessionId=1')
-        .send('{ "title":"English" }')
+        .send({ title: 'English' })
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '997', done);
+        .expect('content-Length', '1015', done);
     });
   });
   describe('/removeTodo', () => {
@@ -175,10 +175,10 @@ describe('POST', () => {
         .post('/removeTodo')
         .set('Accept', '*/*')
         .set('Cookie', 'sessionId=1')
-        .send('{ "todoId":"4" }')
+        .send({ todoId: '4' })
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '559', done);
+        .expect('content-Length', '977', done);
     });
   });
   describe('/addTask', () => {
@@ -188,10 +188,10 @@ describe('POST', () => {
         .set('Accept', '*/*')
         .set('Content-Type', 'application/json')
         .set('Cookie', 'sessionId=1')
-        .send('{ "todoId":"3", "work":"reading books" }')
+        .send({ todoId: '3', work: 'reading books' })
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '611', done);
+        .expect('content-Length', '1029', done);
     });
   });
   describe('/removeTask', () => {
@@ -201,10 +201,10 @@ describe('POST', () => {
         .set('Accept', '*/*')
         .set('Content-Type', 'application/json')
         .set('Cookie', 'sessionId=1')
-        .send('{ "todoId":"3", "taskId":"7" }')
+        .send({ todoId: '3', taskId: '7' })
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '559', done);
+        .expect('content-Length', '977', done);
     });
   });
   describe('/toggleTaskCompletion', () => {
@@ -214,10 +214,10 @@ describe('POST', () => {
         .set('Accept', '*/*')
         .set('Content-Type', 'application/json')
         .set('Cookie', 'sessionId=1')
-        .send('{ "todoId":"3", "taskId":"6" }')
+        .send({ todoId: '3', taskId: '6' })
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '558', done);
+        .expect('content-Length', '976', done);
     });
     it('Should make toggle the isCompletion of given work/task from true to false', done => {
       request(app)
@@ -225,10 +225,10 @@ describe('POST', () => {
         .set('Accept', '*/*')
         .set('Content-Type', 'application/json')
         .set('Cookie', 'sessionId=1')
-        .send('{ "todoId":"3", "taskId":"6" }')
+        .send({ todoId: '3', taskId: '6' })
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '559', done);
+        .expect('content-Length', '977', done);
     });
   });
   describe('/editTitle', () => {
@@ -238,10 +238,10 @@ describe('POST', () => {
         .set('Accept', '*/*')
         .set('Content-Type', 'application/json')
         .set('Cookie', 'sessionId=1')
-        .send('{ "newTitle":"Naveen", "todoId":"3" }')
+        .send({ newTitle: 'Naveen', todoId: '3' })
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '553', done);
+        .expect('content-Length', '971', done);
     });
   });
   describe('/editTask', () => {
@@ -251,10 +251,10 @@ describe('POST', () => {
         .set('Accept', '*/*')
         .set('Content-Type', 'application/json')
         .set('Cookie', 'sessionId=1')
-        .send('{ "newWork":"reading", "todoId":"3", "taskId":"1"}')
+        .send({ newWork: 'reading', todoId: '3', taskId: '1' })
         .expect(200)
         .expect('content-Type', 'application/json')
-        .expect('content-Length', '550', done);
+        .expect('content-Length', '968', done);
     });
   });
 });
