@@ -13,28 +13,26 @@ const sendXHR = (method, url, message, callback) => {
       callback(this.responseText);
     }
   };
-  xhr.send(message);
+  xhr.send(JSON.stringify(message));
 };
-
-const toJSONString = jsonData => JSON.stringify(jsonData);
 
 const createTodo = () => {
   const inputBox = document.querySelector('#title');
   const title = inputBox.value;
-  const message = toJSONString({ title });
+  const message = { title };
   inputBox.value && sendXHR('POST', '/createTodo', message, showTodoLists);
   inputBox.value = '';
 };
 
 const deleteTodo = todoId => {
-  const message = toJSONString({ todoId });
+  const message = { todoId };
   sendXHR('POST', '/removeTodo', message, showTodoLists);
 };
 
 const addTask = todoId => {
   const textBox = event.target.previousElementSibling;
   const work = textBox.value;
-  const message = toJSONString({ todoId, work });
+  const message = { todoId, work };
   textBox.value && sendXHR('POST', '/addTask', message, showTodoLists);
   textBox.value = '';
 };
@@ -42,26 +40,26 @@ const addTask = todoId => {
 const removeTask = taskId => {
   const [, , , todo] = event.path;
   const todoId = todo.id;
-  const message = toJSONString({ taskId, todoId });
+  const message = { taskId, todoId };
   sendXHR('POST', '/removeTask', message, showTodoLists);
 };
 
 const toggleTaskCompletion = taskId => {
   const [, , , , todo] = event.path;
   const todoId = todo.id;
-  const message = toJSONString({ taskId, todoId });
+  const message = { taskId, todoId };
   sendXHR('POST', '/toggleTaskCompletion', message, showTodoLists);
 };
 
 const editTitle = (todoId, newTitle) => {
-  const message = toJSONString({ newTitle, todoId });
+  const message = { newTitle, todoId };
   sendXHR('POST', '/editTitle', message, showTodoLists);
 };
 
 const editTask = (taskId, newWork) => {
   const [, , , todo] = event.path;
   const todoId = todo.id;
-  const message = toJSONString({ newWork, taskId, todoId });
+  const message = { newWork, taskId, todoId };
   sendXHR('POST', '/editTask', message, showTodoLists);
 };
 
@@ -72,7 +70,7 @@ const focusTodoTitle = todoId => {
 
 let allTodos = [];
 const getTodos = () =>
-  sendXHR('GET', '/tasks', '', text => (allTodos = JSON.parse(text)));
+  sendXHR('GET', '/tasks', {}, text => (allTodos = JSON.parse(text)));
 
 const searchByTitle = (todo, searchTitle) => todo.title.includes(searchTitle);
 const searchByTask = (todo, searchTask) => {
