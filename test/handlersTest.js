@@ -5,27 +5,10 @@ const sinon = require('sinon');
 
 const app = require('../lib/app');
 
-describe('/signUp', () => {
-  it('Should signUp the given user with given data', done => {
-    const userData = {
-      fullName: 'naveen',
-      mail: 'naveen@naveen.naveen',
-      userName: 'naveenKumar',
-      password: 'naveen'
-    };
-    request(app)
-      .post('/signUp')
-      .set('Accept', '*/*')
-      .send(userData)
-      .expect(302)
-      .expect('Location', '/', done);
-  });
-});
 describe('GET', () => {
   beforeEach(() => {
     sinon.replace(fs, 'writeFileSync', () => {});
   });
-
   afterEach(() => {
     sinon.restore();
   });
@@ -112,7 +95,6 @@ describe('GET', () => {
         .expect('content-Length', '1217', done);
     });
   });
-
   describe('/tasks', () => {
     it('Should give the tasks as stringified array of objects', done => {
       request(app)
@@ -124,7 +106,6 @@ describe('GET', () => {
         .expect('content-Length', '977', done);
     });
   });
-
   describe('FILE NOT FOUND', () => {
     it('Should give file not found if file not exist', done => {
       request(app)
@@ -145,6 +126,159 @@ describe('POST', () => {
   afterEach(() => {
     sinon.restore();
   });
+  describe('TodoPage', () => {
+    describe('/createTodo', () => {
+      it('Should create the new todo with given title', done => {
+        request(app)
+          .post('/createTodo')
+          .set('Accept', '*/*')
+          .set('Cookie', 'sessionId=1')
+          .send({ title: 'English' })
+          .expect(200)
+          .expect('content-Type', 'application/json')
+          .expect('content-Length', '1015', done);
+      });
+    });
+    describe('/removeTodo', () => {
+      it('Should remove the todo with given id', done => {
+        request(app)
+          .post('/removeTodo')
+          .set('Accept', '*/*')
+          .set('Cookie', 'sessionId=1')
+          .send({ todoId: '4' })
+          .expect(200)
+          .expect('content-Type', 'application/json')
+          .expect('content-Length', '977', done);
+      });
+    });
+    describe('/addTask', () => {
+      it('Should add the given work/task to the given todo', done => {
+        request(app)
+          .post('/addTask')
+          .set('Accept', '*/*')
+          .set('Content-Type', 'application/json')
+          .set('Cookie', 'sessionId=1')
+          .send({ todoId: '3', work: 'reading books' })
+          .expect(200)
+          .expect('content-Type', 'application/json')
+          .expect('content-Length', '1029', done);
+      });
+    });
+    describe('/removeTask', () => {
+      it('Should remove the given work/task form the given todo', done => {
+        request(app)
+          .post('/removeTask')
+          .set('Accept', '*/*')
+          .set('Content-Type', 'application/json')
+          .set('Cookie', 'sessionId=1')
+          .send({ todoId: '3', taskId: '7' })
+          .expect(200)
+          .expect('content-Type', 'application/json')
+          .expect('content-Length', '977', done);
+      });
+    });
+    describe('/toggleTaskCompletion', () => {
+      it('Should make toggle the isCompletion of given work/task from false to true', done => {
+        request(app)
+          .post('/toggleTaskCompletion')
+          .set('Accept', '*/*')
+          .set('Content-Type', 'application/json')
+          .set('Cookie', 'sessionId=1')
+          .send({ todoId: '3', taskId: '6' })
+          .expect(200)
+          .expect('content-Type', 'application/json')
+          .expect('content-Length', '976', done);
+      });
+      it('Should make toggle the isCompletion of given work/task from true to false', done => {
+        request(app)
+          .post('/toggleTaskCompletion')
+          .set('Accept', '*/*')
+          .set('Content-Type', 'application/json')
+          .set('Cookie', 'sessionId=1')
+          .send({ todoId: '3', taskId: '6' })
+          .expect(200)
+          .expect('content-Type', 'application/json')
+          .expect('content-Length', '977', done);
+      });
+    });
+    describe('/editTitle', () => {
+      it('Should modify the title of given todo with given new title', done => {
+        request(app)
+          .post('/editTitle')
+          .set('Accept', '*/*')
+          .set('Content-Type', 'application/json')
+          .set('Cookie', 'sessionId=1')
+          .send({ newTitle: 'Naveen', todoId: '3' })
+          .expect(200)
+          .expect('content-Type', 'application/json')
+          .expect('content-Length', '971', done);
+      });
+    });
+    describe('/editTask', () => {
+      it('Should modify the task/work of given todo with given new task/work', done => {
+        request(app)
+          .post('/editTask')
+          .set('Accept', '*/*')
+          .set('Content-Type', 'application/json')
+          .set('Cookie', 'sessionId=1')
+          .send({ newWork: 'reading', todoId: '3', taskId: '1' })
+          .expect(200)
+          .expect('content-Type', 'application/json')
+          .expect('content-Length', '968', done);
+      });
+    });
+  });
+  describe('/signUp', () => {
+    const userData = {
+      fullName: 'naveen',
+      mail: 'naveen@naveen.naveen',
+      userName: 'naveenKumar',
+      password: 'naveen'
+    };
+    it('Should signUp the given user with given data', done => {
+      request(app)
+        .post('/signUp')
+        .set('Accept', '*/*')
+        .send(userData)
+        .expect(302)
+        .expect('Location', '/', done);
+    });
+    it('Should say useName Already in use if you give already exists userName', done => {
+      request(app)
+        .post('/signUp')
+        .set('Accept', '*/*')
+        .send(userData)
+        .expect(200)
+        .expect('User Name naveenKumar Already in use', done);
+    });
+  });
+  describe('/login', () => {
+    it('Should should login the existing user', done => {
+      const userData = {
+        userName: 'naveenKumar',
+        password: 'naveen'
+      };
+      request(app)
+        .post('/login')
+        .set('Accept', '*/*')
+        .send(userData)
+        .expect(302)
+        .expect('Location', 'homePage.html')
+        .expect('set-Cookie', /sessionId=2/, done);
+    });
+    it('Should redirect to the / if userName or password is incorrect', done => {
+      const userData = {
+        userName: 'naveenKumarVadla',
+        password: 'naveenKumar'
+      };
+      request(app)
+        .post('/login')
+        .set('Accept', '*/*')
+        .send(userData)
+        .expect(302)
+        .expect('Location', '/', done);
+    });
+  });
   describe('FILE NOT FOUND', () => {
     it('Should give file not found if file not exist', done => {
       request(app)
@@ -155,106 +289,6 @@ describe('POST', () => {
         .expect('Content-Type', /html/)
         .expect('Content-Length', '147')
         .expect(/\/badFile/, done);
-    });
-  });
-  describe('/createTodo', () => {
-    it('Should create the new todo with given title', done => {
-      request(app)
-        .post('/createTodo')
-        .set('Accept', '*/*')
-        .set('Cookie', 'sessionId=1')
-        .send({ title: 'English' })
-        .expect(200)
-        .expect('content-Type', 'application/json')
-        .expect('content-Length', '1015', done);
-    });
-  });
-  describe('/removeTodo', () => {
-    it('Should remove the todo with given id', done => {
-      request(app)
-        .post('/removeTodo')
-        .set('Accept', '*/*')
-        .set('Cookie', 'sessionId=1')
-        .send({ todoId: '4' })
-        .expect(200)
-        .expect('content-Type', 'application/json')
-        .expect('content-Length', '977', done);
-    });
-  });
-  describe('/addTask', () => {
-    it('Should add the given work/task to the given todo', done => {
-      request(app)
-        .post('/addTask')
-        .set('Accept', '*/*')
-        .set('Content-Type', 'application/json')
-        .set('Cookie', 'sessionId=1')
-        .send({ todoId: '3', work: 'reading books' })
-        .expect(200)
-        .expect('content-Type', 'application/json')
-        .expect('content-Length', '1029', done);
-    });
-  });
-  describe('/removeTask', () => {
-    it('Should remove the given work/task form the given todo', done => {
-      request(app)
-        .post('/removeTask')
-        .set('Accept', '*/*')
-        .set('Content-Type', 'application/json')
-        .set('Cookie', 'sessionId=1')
-        .send({ todoId: '3', taskId: '7' })
-        .expect(200)
-        .expect('content-Type', 'application/json')
-        .expect('content-Length', '977', done);
-    });
-  });
-  describe('/toggleTaskCompletion', () => {
-    it('Should make toggle the isCompletion of given work/task from false to true', done => {
-      request(app)
-        .post('/toggleTaskCompletion')
-        .set('Accept', '*/*')
-        .set('Content-Type', 'application/json')
-        .set('Cookie', 'sessionId=1')
-        .send({ todoId: '3', taskId: '6' })
-        .expect(200)
-        .expect('content-Type', 'application/json')
-        .expect('content-Length', '976', done);
-    });
-    it('Should make toggle the isCompletion of given work/task from true to false', done => {
-      request(app)
-        .post('/toggleTaskCompletion')
-        .set('Accept', '*/*')
-        .set('Content-Type', 'application/json')
-        .set('Cookie', 'sessionId=1')
-        .send({ todoId: '3', taskId: '6' })
-        .expect(200)
-        .expect('content-Type', 'application/json')
-        .expect('content-Length', '977', done);
-    });
-  });
-  describe('/editTitle', () => {
-    it('Should modify the title of given todo with given new title', done => {
-      request(app)
-        .post('/editTitle')
-        .set('Accept', '*/*')
-        .set('Content-Type', 'application/json')
-        .set('Cookie', 'sessionId=1')
-        .send({ newTitle: 'Naveen', todoId: '3' })
-        .expect(200)
-        .expect('content-Type', 'application/json')
-        .expect('content-Length', '971', done);
-    });
-  });
-  describe('/editTask', () => {
-    it('Should modify the task/work of given todo with given new task/work', done => {
-      request(app)
-        .post('/editTask')
-        .set('Accept', '*/*')
-        .set('Content-Type', 'application/json')
-        .set('Cookie', 'sessionId=1')
-        .send({ newWork: 'reading', todoId: '3', taskId: '1' })
-        .expect(200)
-        .expect('content-Type', 'application/json')
-        .expect('content-Length', '968', done);
     });
   });
 });
