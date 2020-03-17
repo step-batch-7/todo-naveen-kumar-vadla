@@ -24,7 +24,7 @@ describe('GET', () => {
         .expect(/\/badFile/, done);
     });
   });
-  describe('Home Page', () => {
+  describe('Static Requests', () => {
     it('should get the path / or index.html', done => {
       request(app)
         .get('/')
@@ -122,7 +122,43 @@ describe('GET', () => {
       request(app)
         .get('/logout')
         .set('Accept', '*/*')
-        .set('set-Cookie', '1')
+        .set('Cookie', 'sessionId=1')
+        .expect(302)
+        .expect('Location', '/', done);
+    });
+  });
+  describe('/', () => {
+    it('Should should redirect to /homePage.html if iam already logged in', done => {
+      request(app)
+        .get('/')
+        .set('Accept', '*/*')
+        .set('Cookie', 'sessionId=1')
+        .expect(302)
+        .expect('Location', '/homePage.html', done);
+    });
+    it('Should give me / if have not logged in', done => {
+      request(app)
+        .get('/')
+        .set('Accept', '*/*')
+        .expect(200)
+        .expect('Content-Type', /html/)
+        .expect(/<title>Todo<\/title>/, done);
+    });
+  });
+  describe('/homePage.html', () => {
+    it('Should should give me /homePage.html if iam already logged in', done => {
+      request(app)
+        .get('/homePage.html')
+        .set('Accept', '*/*')
+        .set('Cookie', 'sessionId=1')
+        .expect(200)
+        .expect('Content-Type', /html/)
+        .expect(/<title>Todo<\/title>/, done);
+    });
+    it('Should redirect me to / if i am not logged in', done => {
+      request(app)
+        .get('/homePage.html')
+        .set('Accept', '*/*')
         .expect(302)
         .expect('Location', '/', done);
     });
