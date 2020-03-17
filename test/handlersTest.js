@@ -358,3 +358,22 @@ describe('METHOD NOT ALLOWED', () => {
       .expect(/Cannot DELETE/, done);
   });
 });
+describe('hasFields', () => {
+  it('Should call next if all fields are present', done => {
+    request(app)
+      .post('/login')
+      .set('Accept', '*/*')
+      .send({ userName: 'naveenKumar', password: 'naveen' })
+      .expect(302)
+      .expect('Location', 'homePage.html')
+      .expect('set-Cookie', /sessionId=2/, done);
+  });
+  it('Should call give 400 BadRequest if all fields are not present', done => {
+    request(app)
+      .post('/login')
+      .set('Accept', '*/*')
+      .send({ userName: 'naveenKumar' })
+      .expect(400)
+      .expect(/Bad Request/, done);
+  });
+});
