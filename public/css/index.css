@@ -1,9 +1,16 @@
 body {
-  background: #aeb6b8;
+  background: linear-gradient(
+    rgba(194, 194, 194, 0.3),
+    rgba(190, 190, 190, 0.3)
+  );
   font-family: sans-serif;
-  color: #151515;
 }
-
+::placeholder {
+  font-style: italic;
+  color: #777777;
+  font-family: font-awesome;
+  font-size: 1.5vh;
+}
 label {
   color: black;
   font-weight: 600;
@@ -21,21 +28,20 @@ input:focus {
 .form {
   display: flex;
   width: auto;
-  background: #3b4446;
   margin: 1%;
   padding: 2%;
   border-radius: 10px;
+  background: rgba(230, 230, 230, 0.455);
+  border: 1px solid #aaaaaa; 
 }
 .signInSection,
 .signUpSection {
-  padding: 30px;
+  padding: 1rem;
 }
 .header {
   text-align: center;
   font-weight: 700;
-  position: relative;
   margin: 0%;
-  color: #aeb6b8;
 }
 .form-field {
   display: block;
@@ -50,49 +56,44 @@ input:focus {
 input[type='email'],
 input[type='text'] {
   width: 90%;
-  padding: 4%;
-  border-radius: 10px;
-  border: 1px solid #2c2c2c;
-  background: transparent;
-  color: #aeb6b8;
-  font-size: 1.5vh;
+  padding: 2%;
+  border-radius: 7px;
+  border: 1px solid #aaaaaa;
+  color: #777777;
+  font-family: font-awesome;
+  font-size: 2vh;
 }
-.form-field input::placeholder {
-  color: #898989;
-  font-style: italic;
-  font-family: FontAwesome;
-}
+
 .form-field input:focus {
-  border: 1px solid #e8e8e8;
+  border: 1px solid #555555;
 }
 .button {
   padding: 15px;
   font-size: 1em;
-  width: 100%;
+  width: 93%;
   border-radius: 25px;
-  border: 1px solid #151515;
+  border: 1px solid #aaaaaa;
   margin: 20px 0px;
   cursor: pointer;
-  background: #aeb6b874;
-  color: #fff;
+  background: #dddddd;
 }
 .createAccount {
   display: flex;
 }
 .createAccount p {
-  color: #9c9c9c;
+  color: #777777;
 }
 #createAccount {
   border-bottom: 1px solid #aeb6b8;
 }
 #createAccount,
 #signIn {
-  color: #e3e3e3;
+  color: #555555;
   cursor: pointer;
   margin-left: 10px;
 }
 label {
-  color: #b2b2b2;
+  color: #555555;
 }
 .hidden {
   display: none;
