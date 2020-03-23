@@ -102,6 +102,12 @@
       "rules": {
         "no-process-env": "off"
       }
+    },
+    {
+      "files": ["app.js"],
+      "rules": {
+        "no-console": "off"
+      }
     }
   ]
 }

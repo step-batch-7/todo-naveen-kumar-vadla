@@ -20,20 +20,20 @@ const createTodo = () => {
   const inputBox = document.querySelector('#title');
   const title = inputBox.value;
   const message = { title };
-  inputBox.value && sendXHR('POST', '/createTodo', message, showTodoLists);
+  inputBox.value && sendXHR('POST', '/user/createTodo', message, showTodoLists);
   inputBox.value = '';
 };
 
 const deleteTodo = todoId => {
   const message = { todoId };
-  sendXHR('POST', '/removeTodo', message, showTodoLists);
+  sendXHR('POST', '/user/removeTodo', message, showTodoLists);
 };
 
 const addTask = todoId => {
   const textBox = event.target.previousElementSibling;
   const work = textBox.value;
   const message = { todoId, work };
-  textBox.value && sendXHR('POST', '/addTask', message, showTodoLists);
+  textBox.value && sendXHR('POST', '/user/addTask', message, showTodoLists);
   textBox.value = '';
 };
 
@@ -41,26 +41,26 @@ const removeTask = taskId => {
   const [, , , todo] = event.path;
   const todoId = todo.id;
   const message = { taskId, todoId };
-  sendXHR('POST', '/removeTask', message, showTodoLists);
+  sendXHR('POST', '/user/removeTask', message, showTodoLists);
 };
 
 const toggleTaskCompletion = taskId => {
   const [, , , , todo] = event.path;
   const todoId = todo.id;
   const message = { taskId, todoId };
-  sendXHR('POST', '/toggleTaskCompletion', message, showTodoLists);
+  sendXHR('POST', '/user/toggleTaskCompletion', message, showTodoLists);
 };
 
 const editTitle = (todoId, newTitle) => {
   const message = { newTitle, todoId };
-  sendXHR('POST', '/editTitle', message, showTodoLists);
+  sendXHR('POST', '/user/editTitle', message, showTodoLists);
 };
 
 const editTask = (taskId, newWork) => {
   const [, , , todo] = event.path;
   const todoId = todo.id;
   const message = { newWork, taskId, todoId };
-  sendXHR('POST', '/editTask', message, showTodoLists);
+  sendXHR('POST', '/user/editTask', message, showTodoLists);
 };
 
 const focusTodoTitle = todoId => {
@@ -70,7 +70,7 @@ const focusTodoTitle = todoId => {
 
 let allTodos = [];
 const getTodos = () =>
-  sendXHR('GET', '/tasks', {}, text => (allTodos = JSON.parse(text)));
+  sendXHR('GET', '/user/tasks', {}, text => (allTodos = JSON.parse(text)));
 
 const searchByTitle = (todo, searchTitle) => todo.title.includes(searchTitle);
 const searchByTask = (todo, searchTask) => {

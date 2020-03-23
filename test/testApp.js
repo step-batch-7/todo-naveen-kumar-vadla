@@ -106,10 +106,10 @@ describe('GET', () => {
         .expect('content-Length', '1217', done);
     });
   });
-  describe('/tasks', () => {
+  describe('/user/tasks', () => {
     it('Should give the tasks as stringified array of objects', done => {
       request(app)
-        .get('/tasks')
+        .get('/user/tasks')
         .set('Accept', '*/*')
         .set('Cookie', 'sessionId=1')
         .expect(200)
@@ -128,13 +128,13 @@ describe('GET', () => {
     });
   });
   describe('/', () => {
-    it('Should should redirect to /homePage.html if iam already logged in', done => {
+    it('Should should redirect to /user/ if iam already logged in', done => {
       request(app)
         .get('/')
         .set('Accept', '*/*')
         .set('Cookie', 'sessionId=1')
         .expect(302)
-        .expect('Location', '/homePage.html', done);
+        .expect('Location', '/user/', done);
     });
     it('Should give me / if have not logged in', done => {
       request(app)
@@ -145,10 +145,10 @@ describe('GET', () => {
         .expect(/<title>Todo<\/title>/, done);
     });
   });
-  describe('/homePage.html', () => {
-    it('Should should give me /homePage.html if iam already logged in', done => {
+  describe('/user/homePage.html', () => {
+    it('Should should give me /user/homePage.html if iam already logged in', done => {
       request(app)
-        .get('/homePage.html')
+        .get('/user/homePage.html')
         .set('Accept', '*/*')
         .set('Cookie', 'sessionId=1')
         .expect(200)
@@ -157,7 +157,7 @@ describe('GET', () => {
     });
     it('Should redirect me to / if i am not logged in', done => {
       request(app)
-        .get('/homePage.html')
+        .get('/user/homePage.html')
         .set('Accept', '*/*')
         .expect(302)
         .expect('Location', '/', done);
@@ -185,10 +185,10 @@ describe('POST', () => {
     });
   });
   describe('TodoPage', () => {
-    describe('/createTodo', () => {
+    describe('/user/createTodo', () => {
       it('Should create the new todo with given title', done => {
         request(app)
-          .post('/createTodo')
+          .post('/user/createTodo')
           .set('Accept', '*/*')
           .set('Cookie', 'sessionId=1')
           .send({ title: 'English' })
@@ -197,10 +197,10 @@ describe('POST', () => {
           .expect('content-Length', '1015', done);
       });
     });
-    describe('/removeTodo', () => {
+    describe('/user/removeTodo', () => {
       it('Should remove the todo with given id', done => {
         request(app)
-          .post('/removeTodo')
+          .post('/user/removeTodo')
           .set('Accept', '*/*')
           .set('Cookie', 'sessionId=1')
           .send({ todoId: '4' })
@@ -209,10 +209,10 @@ describe('POST', () => {
           .expect('content-Length', '977', done);
       });
     });
-    describe('/addTask', () => {
+    describe('/user/addTask', () => {
       it('Should add the given work/task to the given todo', done => {
         request(app)
-          .post('/addTask')
+          .post('/user/addTask')
           .set('Accept', '*/*')
           .set('Content-Type', 'application/json')
           .set('Cookie', 'sessionId=1')
@@ -222,10 +222,10 @@ describe('POST', () => {
           .expect('content-Length', '1029', done);
       });
     });
-    describe('/removeTask', () => {
+    describe('/user/removeTask', () => {
       it('Should remove the given work/task form the given todo', done => {
         request(app)
-          .post('/removeTask')
+          .post('/user/removeTask')
           .set('Accept', '*/*')
           .set('Content-Type', 'application/json')
           .set('Cookie', 'sessionId=1')
@@ -235,10 +235,10 @@ describe('POST', () => {
           .expect('content-Length', '977', done);
       });
     });
-    describe('/toggleTaskCompletion', () => {
+    describe('/user/toggleTaskCompletion', () => {
       it('Should make toggle the isCompletion of given work/task from false to true', done => {
         request(app)
-          .post('/toggleTaskCompletion')
+          .post('/user/toggleTaskCompletion')
           .set('Accept', '*/*')
           .set('Content-Type', 'application/json')
           .set('Cookie', 'sessionId=1')
@@ -249,7 +249,7 @@ describe('POST', () => {
       });
       it('Should make toggle the isCompletion of given work/task from true to false', done => {
         request(app)
-          .post('/toggleTaskCompletion')
+          .post('/user/toggleTaskCompletion')
           .set('Accept', '*/*')
           .set('Content-Type', 'application/json')
           .set('Cookie', 'sessionId=1')
@@ -259,10 +259,10 @@ describe('POST', () => {
           .expect('content-Length', '977', done);
       });
     });
-    describe('/editTitle', () => {
+    describe('/user/editTitle', () => {
       it('Should modify the title of given todo with given new title', done => {
         request(app)
-          .post('/editTitle')
+          .post('/user/editTitle')
           .set('Accept', '*/*')
           .set('Content-Type', 'application/json')
           .set('Cookie', 'sessionId=1')
@@ -272,10 +272,10 @@ describe('POST', () => {
           .expect('content-Length', '971', done);
       });
     });
-    describe('/editTask', () => {
+    describe('/user/editTask', () => {
       it('Should modify the task/work of given todo with given new task/work', done => {
         request(app)
-          .post('/editTask')
+          .post('/user/editTask')
           .set('Accept', '*/*')
           .set('Content-Type', 'application/json')
           .set('Cookie', 'sessionId=1')
@@ -321,7 +321,7 @@ describe('POST', () => {
         .set('Accept', '*/*')
         .send(userData)
         .expect(302)
-        .expect('Location', 'homePage.html')
+        .expect('Location', '/user/')
         .expect('set-Cookie', /sessionId=2/, done);
     });
     it('Should redirect to the / if userName or password is incorrect', done => {
@@ -365,7 +365,7 @@ describe('hasFields', () => {
       .set('Accept', '*/*')
       .send({ userName: 'naveenKumar', password: 'naveen' })
       .expect(302)
-      .expect('Location', 'homePage.html')
+      .expect('Location', '/user/')
       .expect('set-Cookie', /sessionId=2/, done);
   });
   it('Should call give 400 BadRequest if all fields are not present', done => {

@@ -84,6 +84,6 @@ const showTodoLists = text => {
   todoLists.forEach(todo => todoListContainer.appendChild(todo));
 };
 
-const loadTasks = () => sendXHR('GET', '/tasks', '', showTodoLists);
+const loadTasks = () => sendXHR('GET', '/user/tasks', '', showTodoLists);
 
 window.onload = loadTasks;
